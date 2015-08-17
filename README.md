@@ -1,0 +1,2 @@
+# tintr
+Colour comparison game
