@@ -5,6 +5,9 @@ $(document).ready(function() {
   // box1.css('backgroundColor', generateColor());
   // box2.css('backgroundColor', generateColor());
 
+  //Create a game with a number of questions, right and wrong answers
+  var game = new Game(5);
+
   //Create number of color boxes based on input
   var numBoxes = 2;
   createBoxes(numBoxes);
@@ -14,14 +17,31 @@ $(document).ready(function() {
   setBackgroundColors(question.colors);
   console.log(question);
 
+  //Attach click handler to each box
   var boxes = $('.color-box');
   for(var i = 0; i < boxes.length; i++) {
     $(boxes[i]).click(function() {
       if($(this).attr('id') == question.brightestColorIndex) {
         console.log("That's right!");
+        game.numberCorrect++;
+        game.correctlyAnswered.push(question.colors);
+        console.log(game.correctlyAnswered);
       }
       else {
         console.log("Try again...");
+        game.incorrectlyAnswered.push(question.colors);
+      }
+      //Increment # of questions asked
+      game.questionsAnswered++;
+
+      //Create the next question if there are still more to go
+      if(game.questionsAnswered < game.numberOfQuestions) {
+        question = generateQuestion(numBoxes);
+        setBackgroundColors(question.colors);
+        console.log(question);
+      }
+      else {
+        $('body').append('<p>Game over!<p>');
       }
     })
   }
@@ -63,4 +83,12 @@ function setBackgroundColors(colors) {
   for(var i = 0; i < boxes.length; i++) {
     $(boxes[i]).css('backgroundColor', colors[i]);
   }
+}
+
+function Game(numQuestions) {
+  this.numberOfQuestions = numQuestions;
+  this.numberCorrect = 0;
+  this.questionsAnswered = 0;
+  this.correctlyAnswered = [];
+  this.incorrectlyAnswered = [];
 }
