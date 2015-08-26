@@ -6,13 +6,18 @@
     <script type="text/javascript" src='script.js'></script>
   </head>
   <body>
-    <p>
-      Choose the lightest color:
-    </p>
-    <div class="container">
-
+    <div class="user-input-container">
+      <form id="user-input" action="">
+        <p># of Questions</p>
+        <input type="text" id="input-numQuestions" value=""><br />
+        <p># of Colours</p>
+        <input type="text" id="input-numBoxes" value=""><br />
+        <input type="button" id="btn-startGame" value="Start Game">
+      </form>
     </div>
-    <!-- <div id="box1" class='color-box'></div>
-    <div id="box2" class='color-box'></div> -->
+    <div class="game-container">
+      <p>Choose the lightest color:</p>
+      <div class="color-box-container"></div>
+    </div>
   </body>
 </html>

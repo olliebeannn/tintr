@@ -1,56 +1,60 @@
 $(document).ready(function() {
-  // var box1 = $('#box1');
-  // var box2 = $('#box2');
-  //
-  // box1.css('backgroundColor', generateColor());
-  // box2.css('backgroundColor', generateColor());
+  //Take user input to set up game
+  var numQuestions = 5;
+  var numBoxes = 3;
 
-  //Create a game with a number of questions, right and wrong answers
-  var game = new Game(5);
+  $('#btn-startGame').click(function() {
+    numQuestions = $('#input-numQuestions').val();
+    // console.log(numQuestions);
+    numBoxes = $('#input-numBoxes').val();
+    // console.log(numBoxes);
 
-  //Create number of color boxes based on input
-  var numBoxes = 2;
-  createBoxes(numBoxes);
+    //Create a game with a number of questions, right and wrong answers
+    var game = new Game(numQuestions);
 
-  //Generate set of colors for question, and save index of lightest one
-  var question = generateQuestion(numBoxes);
-  setBackgroundColors(question.colors);
-  console.log(question);
+    //Create number of color boxes based on input
+    createBoxes(numBoxes);
 
-  //Attach click handler to each box
-  var boxes = $('.color-box');
-  for(var i = 0; i < boxes.length; i++) {
-    $(boxes[i]).click(function() {
-      if($(this).attr('id') == question.brightestColorIndex) {
-        console.log("That's right!");
-        game.numberCorrect++;
-        game.correctlyAnswered.push(question.colors);
-        console.log(game.correctlyAnswered);
-      }
-      else {
-        console.log("Try again...");
-        game.incorrectlyAnswered.push(question.colors);
-      }
-      //Increment # of questions asked
-      game.questionsAnswered++;
+    //Generate set of colors for question, and save index of lightest one
+    var question = generateQuestion(numBoxes);
+    setBackgroundColors(question.colors);
+    console.log(question);
 
-      //Create the next question if there are still more to go
-      if(game.questionsAnswered < game.numberOfQuestions) {
-        question = generateQuestion(numBoxes);
-        setBackgroundColors(question.colors);
-        console.log(question);
-      }
-      else {
-        $('body').append('<p>Game over!<p>');
-      }
-    })
-  }
+    //Attach click handler to each box
+    var boxes = $('.color-box');
+    for(var i = 0; i < boxes.length; i++) {
+      $(boxes[i]).click(function() {
+        if($(this).attr('id') == question.brightestColorIndex) {
+          console.log("That's right!");
+          game.numberCorrect++;
+          game.correctlyAnswered.push(question.colors);
+          console.log(game.correctlyAnswered);
+        }
+        else {
+          console.log("Try again...");
+          game.incorrectlyAnswered.push(question.colors);
+        }
+        //Increment # of questions asked
+        game.questionsAnswered++;
+
+        //Create the next question if there are still more to go
+        if(game.questionsAnswered < game.numberOfQuestions) {
+          question = generateQuestion(numBoxes);
+          setBackgroundColors(question.colors);
+          console.log(question);
+        }
+        else {
+          $('body').append('<p>Game over!<p>');
+        }
+      })
+    }    
+  });
 })
 
 function createBoxes(numBoxes) {
   for(var i = 0; i < numBoxes; i++) {
     var newBox = $('<div></div>').addClass('color-box').attr('id', i.toString());
-    $('.container').append(newBox);
+    $('.color-box-container').append(newBox);
   }
 }
 
