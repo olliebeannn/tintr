@@ -10,9 +10,11 @@
       <form id="user-input" action="">
         <p># of Questions</p>
         <input type="text" id="input-numQuestions" value=""><br />
+        <p class='hidden errorMessage' id='numQuestions-error'>Enter a number between 0 and 20, brah.</p>
         <p># of Colours</p>
-        <input type="text" id="input-numBoxes" value=""><br />
-        <input type="button" id="btn-startGame" value="Start Game">
+        <input type="text" id="input-numColors" value=""><br />
+        <p class='hidden errorMessage' id='numColors-error'>Enter a number between 1 and 5, brah.</p>
+        <input type="button" id="btn-startGame" class='hidden' value="Start Game">
       </form>
     </div>
     <div class="game-container">

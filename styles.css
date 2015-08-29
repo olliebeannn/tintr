@@ -4,3 +4,11 @@
   height: 100px;
   width: 100px;
 }
+
+.errorMessage {
+  color: red;
+}
+
+.hidden {
+  display: none;
+}

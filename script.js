@@ -1,22 +1,52 @@
 $(document).ready(function() {
   //Take user input to set up game
-  var numQuestions = 5;
-  var numBoxes = 3;
+  var numQuestions;
+  var numColors;
+
+  $('#input-numQuestions, #input-numColors').blur(function() {
+    var numQuestionsInput = parseInt($('#input-numQuestions').val());
+    var numColorsInput = parseInt($('#input-numColors').val());
+
+    var numQuestionsInputInvalid = isNaN(numQuestionsInput) || (numQuestionsInput < 0) || (numQuestionsInput > 20);
+    var numColorsInputInvalid = isNaN(numColorsInput) || (numColorsInput < 1) || (numColorsInput > 5);
+
+    // console.log(numQuestionsInput);
+    // console.log(numColorsInput);
+
+
+    if(numQuestionsInputInvalid) {
+      $('#numQuestions-error').removeClass('hidden');
+      $('#btn-startGame').addClass('hidden');
+    }
+    else {
+      $('#numQuestions-error').addClass('hidden');
+      if(!numColorsInputInvalid) $('#btn-startGame').removeClass('hidden');
+    }
+
+    if(numColorsInputInvalid) {
+      $('#numColors-error').removeClass('hidden');
+      $('#btn-startGame').addClass('hidden');
+    }
+    else {
+      $('#numColors-error').addClass('hidden');
+      if(!numQuestionsInputInvalid) $('#btn-startGame').removeClass('hidden');
+    }
+  })
 
   $('#btn-startGame').click(function() {
     numQuestions = $('#input-numQuestions').val();
     // console.log(numQuestions);
-    numBoxes = $('#input-numBoxes').val();
-    // console.log(numBoxes);
+    numColors = $('#input-numColors').val();
+    // console.log(numColors);
 
     //Create a game with a number of questions, right and wrong answers
     var game = new Game(numQuestions);
 
     //Create number of color boxes based on input
-    createBoxes(numBoxes);
+    createBoxes(numColors);
 
     //Generate set of colors for question, and save index of lightest one
-    var question = generateQuestion(numBoxes);
+    var question = generateQuestion(numColors);
     setBackgroundColors(question.colors);
     console.log(question);
 
@@ -39,7 +69,7 @@ $(document).ready(function() {
 
         //Create the next question if there are still more to go
         if(game.questionsAnswered < game.numberOfQuestions) {
-          question = generateQuestion(numBoxes);
+          question = generateQuestion(numColors);
           setBackgroundColors(question.colors);
           console.log(question);
         }
@@ -47,24 +77,24 @@ $(document).ready(function() {
           $('body').append('<p>Game over!<p>');
         }
       })
-    }    
+    }
   });
 })
 
-function createBoxes(numBoxes) {
-  for(var i = 0; i < numBoxes; i++) {
+function createBoxes(numColors) {
+  for(var i = 0; i < numColors; i++) {
     var newBox = $('<div></div>').addClass('color-box').attr('id', i.toString());
     $('.color-box-container').append(newBox);
   }
 }
 
-function generateQuestion(numBoxes) {
+function generateQuestion(numColors) {
   var question = {};
   var colors = [];
   var brightestColorIndex;
   var brightestLValue = 0;
 
-  for(var i = 0; i < numBoxes; i++) {
+  for(var i = 0; i < numColors; i++) {
     var h = Math.random()*360;
     var s = Math.random()*100;
     var l = Math.random()*100;
