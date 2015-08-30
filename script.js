@@ -3,35 +3,7 @@ $(document).ready(function() {
   var numQuestions;
   var numColors;
 
-  $('#input-numQuestions, #input-numColors').blur(function() {
-    var numQuestionsInput = parseInt($('#input-numQuestions').val());
-    var numColorsInput = parseInt($('#input-numColors').val());
-
-    var numQuestionsInputInvalid = isNaN(numQuestionsInput) || (numQuestionsInput < 0) || (numQuestionsInput > 20);
-    var numColorsInputInvalid = isNaN(numColorsInput) || (numColorsInput < 1) || (numColorsInput > 5);
-
-    // console.log(numQuestionsInput);
-    // console.log(numColorsInput);
-
-
-    if(numQuestionsInputInvalid) {
-      $('#numQuestions-error').removeClass('hidden');
-      $('#btn-startGame').addClass('hidden');
-    }
-    else {
-      $('#numQuestions-error').addClass('hidden');
-      if(!numColorsInputInvalid) $('#btn-startGame').removeClass('hidden');
-    }
-
-    if(numColorsInputInvalid) {
-      $('#numColors-error').removeClass('hidden');
-      $('#btn-startGame').addClass('hidden');
-    }
-    else {
-      $('#numColors-error').addClass('hidden');
-      if(!numQuestionsInputInvalid) $('#btn-startGame').removeClass('hidden');
-    }
-  })
+  $('#input-numQuestions, #input-numColors').blur(checkUserInput);
 
   $('#btn-startGame').click(function() {
     numQuestions = $('#input-numQuestions').val();
@@ -41,6 +13,7 @@ $(document).ready(function() {
 
     //Create a game with a number of questions, right and wrong answers
     var game = new Game(numQuestions);
+    $('#game-container').removeClass('hidden');
 
     //Create number of color boxes based on input
     createBoxes(numColors);
@@ -74,7 +47,8 @@ $(document).ready(function() {
           console.log(question);
         }
         else {
-          $('body').append('<p>Game over!<p>');
+          // $('body').append('<p>Game over!<p>');
+          game.displayResults();
         }
       })
     }
@@ -125,4 +99,50 @@ function Game(numQuestions) {
   this.questionsAnswered = 0;
   this.correctlyAnswered = [];
   this.incorrectlyAnswered = [];
+
+  this.displayResults = function() {
+    //Hide the game container
+    $('#game-container').addClass('hidden');
+
+    //Build endgame results and show them
+    $('#game-results').text("You got " + this.numberCorrect + ' out of ' + this.numberOfQuestions + ' right.');
+    for(var i = 0; i < this.correctlyAnswered.length; i++) {
+      var colorGroup = this.correctlyAnswered[i];
+      var colorGroupContainer = $("<div class='color-group-container'></div>").appendTo($('#correct-answer-list'));
+      for(var j = 0; j < colorGroup.length; j++) {
+        var colorBox = $("<div></div>").appendTo(colorGroupContainer);
+        colorBox.addClass('color-box');
+        colorBox.css('backgroundColor', colorGroup[j]);
+        console.log(colorGroup[j]);
+      }
+    }
+
+    $('#endgame-container').removeClass('hidden');
+  }
+}
+
+function checkUserInput() {
+  var numQuestionsInput = parseInt($('#input-numQuestions').val());
+  var numColorsInput = parseInt($('#input-numColors').val());
+
+  var numQuestionsInputInvalid = isNaN(numQuestionsInput) || (numQuestionsInput < 0) || (numQuestionsInput > 20);
+  var numColorsInputInvalid = isNaN(numColorsInput) || (numColorsInput < 2) || (numColorsInput > 5);
+
+  if(numQuestionsInputInvalid) {
+    $('#numQuestions-error').removeClass('hidden');
+    $('#btn-startGame').addClass('hidden');
+  }
+  else {
+    $('#numQuestions-error').addClass('hidden');
+    if(!numColorsInputInvalid) $('#btn-startGame').removeClass('hidden');
+  }
+
+  if(numColorsInputInvalid) {
+    $('#numColors-error').removeClass('hidden');
+    $('#btn-startGame').addClass('hidden');
+  }
+  else {
+    $('#numColors-error').addClass('hidden');
+    if(!numQuestionsInputInvalid) $('#btn-startGame').removeClass('hidden');
+  }
 }

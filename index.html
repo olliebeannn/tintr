@@ -6,20 +6,30 @@
     <script type="text/javascript" src='script.js'></script>
   </head>
   <body>
-    <div class="user-input-container">
+    <div id="startgame-container">
       <form id="user-input" action="">
         <p># of Questions</p>
         <input type="text" id="input-numQuestions" value=""><br />
         <p class='hidden errorMessage' id='numQuestions-error'>Enter a number between 0 and 20, brah.</p>
         <p># of Colours</p>
         <input type="text" id="input-numColors" value=""><br />
-        <p class='hidden errorMessage' id='numColors-error'>Enter a number between 1 and 5, brah.</p>
+        <p class='hidden errorMessage' id='numColors-error'>Enter a number between 2 and 5, brah.</p>
         <input type="button" id="btn-startGame" class='hidden' value="Start Game">
       </form>
     </div>
-    <div class="game-container">
+    <div id="game-container" class="hidden">
       <p>Choose the lightest color:</p>
       <div class="color-box-container"></div>
+    </div>
+    <div id="endgame-container" class="hidden">
+      <p id="game-results">Your score was: </p>
+      <input type="button" id="btn-newGame" value="Play Again">
+      <div id="correct-answer-list">
+        <p>Correct Answers:</p>
+      </div>
+      <div id="incorrect-answer-list">
+        <p>Incorrect Answers:</p>
+      </div>
     </div>
   </body>
 </html>
