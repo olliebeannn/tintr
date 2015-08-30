@@ -1,53 +1,48 @@
 $(document).ready(function() {
-  //Take user input to set up game
-  var numQuestions;
-  var numColors;
+  var game;
 
   $('#input-numQuestions, #input-numColors').blur(checkUserInput);
 
   $('#btn-startGame').click(function() {
-    numQuestions = $('#input-numQuestions').val();
-    // console.log(numQuestions);
-    numColors = $('#input-numColors').val();
-    // console.log(numColors);
+    var numQuestions = $('#input-numQuestions').val();
+    var numColors = $('#input-numColors').val();
 
     //Create a game with a number of questions, right and wrong answers
-    var game = new Game(numQuestions);
+    game = new Game(numQuestions, numColors);
+    // $('#startgame-container').addClass('hidden');
     $('#game-container').removeClass('hidden');
 
     //Create number of color boxes based on input
-    createBoxes(numColors);
+    createBoxes(game.numberOfColors);
 
-    //Generate set of colors for question, and save index of lightest one
-    var question = generateQuestion(numColors);
-    setBackgroundColors(question.colors);
-    console.log(question);
+    //Generate next question
+    game.generateQuestion();
+    console.log(game.currentQuestion);
 
     //Attach click handler to each box
     var boxes = $('.color-box');
     for(var i = 0; i < boxes.length; i++) {
       $(boxes[i]).click(function() {
-        if($(this).attr('id') == question.brightestColorIndex) {
+        if($(this).attr('id') == game.currentQuestion.brightestColorIndex) {
           console.log("That's right!");
           game.numberCorrect++;
-          game.correctlyAnswered.push(question.colors);
+          game.correctlyAnswered.push(game.currentQuestion.colors);
           console.log(game.correctlyAnswered);
         }
         else {
           console.log("Try again...");
-          game.incorrectlyAnswered.push(question.colors);
+          game.incorrectlyAnswered.push(game.currentQuestion.colors);
         }
         //Increment # of questions asked
         game.questionsAnswered++;
 
         //Create the next question if there are still more to go
         if(game.questionsAnswered < game.numberOfQuestions) {
-          question = generateQuestion(numColors);
-          setBackgroundColors(question.colors);
-          console.log(question);
+          game.generateQuestion();
+          console.log(game.currentQuestion);
         }
+        //Or show results if all questions have been asked
         else {
-          // $('body').append('<p>Game over!<p>');
           game.displayResults();
         }
       })
@@ -86,19 +81,40 @@ function generateQuestion(numColors) {
   return question;
 }
 
-function setBackgroundColors(colors) {
-  var boxes = $('.color-box');
-  for(var i = 0; i < boxes.length; i++) {
-    $(boxes[i]).css('backgroundColor', colors[i]);
-  }
-}
-
-function Game(numQuestions) {
+function Game(numQuestions, numColors) {
   this.numberOfQuestions = numQuestions;
+  this.numberOfColors = numColors;
   this.numberCorrect = 0;
   this.questionsAnswered = 0;
+  this.currentQuestion;
   this.correctlyAnswered = [];
   this.incorrectlyAnswered = [];
+
+  this.generateQuestion = function generateQuestion() {
+    var question = {};
+    var colors = [];
+    var brightestColorIndex;
+    var brightestLValue = 0;
+
+    for(var i = 0; i < this.numberOfColors; i++) {
+      var h = Math.random()*360;
+      var s = Math.random()*100;
+      var l = Math.random()*100;
+
+      if(l > brightestLValue) {
+        brightestColorIndex = i;
+        brightestLValue = l;
+      }
+
+      colors[i] = "hsl(" + h + "," + s + "%," + l + "%)";
+    }
+
+    question.colors = colors;
+    question.brightestColorIndex = brightestColorIndex;
+
+    this.currentQuestion = question;
+    setBackgroundColors(this.currentQuestion.colors);
+  }
 
   this.displayResults = function() {
     //Hide the game container
@@ -110,6 +126,13 @@ function Game(numQuestions) {
     makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'));
 
     $('#endgame-container').removeClass('hidden');
+  }
+}
+
+function setBackgroundColors(colors) {
+  var boxes = $('.color-box');
+  for(var i = 0; i < boxes.length; i++) {
+    $(boxes[i]).css('backgroundColor', colors[i]);
   }
 }
 
@@ -150,4 +173,10 @@ function checkUserInput() {
     $('#numColors-error').addClass('hidden');
     if(!numQuestionsInputInvalid) $('#btn-startGame').removeClass('hidden');
   }
+}
+
+function resetGame() {
+  $('.color-box-container').empty();
+  $('#correct-answer-list').empty();
+  $('#incorrect-answer-list').empty();
 }
