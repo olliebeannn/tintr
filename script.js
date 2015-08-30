@@ -106,18 +106,23 @@ function Game(numQuestions) {
 
     //Build endgame results and show them
     $('#game-results').text("You got " + this.numberCorrect + ' out of ' + this.numberOfQuestions + ' right.');
-    for(var i = 0; i < this.correctlyAnswered.length; i++) {
-      var colorGroup = this.correctlyAnswered[i];
-      var colorGroupContainer = $("<div class='color-group-container'></div>").appendTo($('#correct-answer-list'));
-      for(var j = 0; j < colorGroup.length; j++) {
-        var colorBox = $("<div></div>").appendTo(colorGroupContainer);
-        colorBox.addClass('color-box');
-        colorBox.css('backgroundColor', colorGroup[j]);
-        console.log(colorGroup[j]);
-      }
-    }
+    makeAnswersList(this.correctlyAnswered, $('#correct-answer-list'));
+    makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'));
 
     $('#endgame-container').removeClass('hidden');
+  }
+}
+
+function makeAnswersList(answers, list) {
+  for(var i = 0; i < answers.length; i++) {
+    var colorGroup = answers[i];
+    var colorGroupContainer = $("<div class='color-group-container'></div>").appendTo(list);
+    for(var j = 0; j < colorGroup.length; j++) {
+      var colorBox = $("<div></div>").appendTo(colorGroupContainer);
+      colorBox.addClass('color-box');
+      colorBox.css('backgroundColor', colorGroup[j]);
+      console.log(colorGroup[j]);
+    }
   }
 }
 
