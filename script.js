@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     //Create a game with a number of questions, right and wrong answers
     game = new Game(numQuestions, numColors);
-    // $('#startgame-container').addClass('hidden');
+    $('#startgame-container').addClass('hidden');
     $('#game-container').removeClass('hidden');
 
     //Create number of color boxes based on input
@@ -48,6 +48,8 @@ $(document).ready(function() {
       })
     }
   });
+
+  $('#btn-newGame').click(resetGame);
 })
 
 function createBoxes(numColors) {
@@ -176,7 +178,11 @@ function checkUserInput() {
 }
 
 function resetGame() {
+  //Remove color box containers from the actual game and results
   $('.color-box-container').empty();
   $('#correct-answer-list').empty();
   $('#incorrect-answer-list').empty();
+
+  $('#endgame-container').addClass('hidden');
+  $('#startgame-container').removeClass('hidden');
 }
