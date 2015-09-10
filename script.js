@@ -27,7 +27,7 @@ $(document).ready(function() {
           console.log("That's right!");
           game.numberCorrect++;
           game.correctlyAnswered.push(game.currentQuestion.colors);
-          console.log(game.correctlyAnswered);
+          // console.log(game.correctlyAnswered);
         }
         else {
           console.log("Try again...");
@@ -39,7 +39,7 @@ $(document).ready(function() {
         //Create the next question if there are still more to go
         if(game.questionsAnswered < game.numberOfQuestions) {
           game.generateQuestion();
-          console.log(game.currentQuestion);
+          // console.log(game.currentQuestion);
         }
         //Or show results if all questions have been asked
         else {
@@ -146,7 +146,7 @@ function makeAnswersList(answers, list) {
       var colorBox = $("<div></div>").appendTo(colorGroupContainer);
       colorBox.addClass('color-box');
       colorBox.css('backgroundColor', colorGroup[j]);
-      console.log(colorGroup[j]);
+      // console.log(colorGroup[j]);
     }
   }
 }

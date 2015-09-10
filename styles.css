@@ -1,3 +1,23 @@
+body {
+  /*color: white;*/
+  font-family: 'Open Sans';
+  font-size: 24px;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+.center {
+  text-align: center;
+}
+
 .color-box {
   /*background-color: #000000;*/
   display: inline-block;
