@@ -32,3 +32,8 @@ h3 {
 .hidden {
   display: none;
 }
+
+input[type="button"] {
+  display: block;
+  margin: 0 auto;
+}

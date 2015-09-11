@@ -10,30 +10,42 @@
     <script type="text/javascript" src='script.js'></script>
   </head>
   <body>
-    <div id="startgame-container">
-      <h1 class="center">Tintr</h1>
-      <h3 class="center">Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
-      <form id="user-input" action="">
-        <p># of Questions</p>
-        <input type="text" id="input-numQuestions" value=""><br />
-        <p class='hidden errorMessage' id='numQuestions-error'>Enter a number between 0 and 20, brah.</p>
-        <p># of Colours</p>
-        <input type="text" id="input-numColors" value=""><br />
-        <p class='hidden errorMessage' id='numColors-error'>Enter a number between 2 and 5, brah.</p>
-        <input type="button" id="btn-startGame" class='hidden' value="Start Game">
-      </form>
-    </div>
-    <div id="game-container" class="hidden">
-      <p>Choose the lightest color:</p>
-      <div class="color-box-container"></div>
-    </div>
-    <div id="endgame-container" class="hidden">
-      <p id="game-results">Your score was: </p>
-      <input type="button" id="btn-newGame" value="Play Again">
-      <p>Correct Answers:</p>
-      <div id="correct-answer-list"></div>
-      <p>Incorrect Answers:</p>
-      <div id="incorrect-answer-list">
+    <div class="container-fluid">
+      <div class="row">
+        <div id="startgame-container col-xs-12">
+          <div class="row">
+            <h1 class="center col-xs-offset-3 col-xs-6">Tintr</h1>
+            <h3 class="center col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6">Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
+          </div>
+          <form id="user-input" action="">
+            <div class="row">
+              <div class="col-xs-offset-3 col-xs-3">
+                <p># of Questions</p>
+                <p class='hidden errorMessage' id='numQuestions-error'>Enter a number between 0 and 20, brah.</p>
+                <input type="text" id="input-numQuestions" value=""><br />
+              </div>
+              <div class="col-xs-3">
+                <p># of Colours</p>
+                <p class='hidden errorMessage' id='numColors-error'>Enter a number between 2 and 5, brah.</p>
+                <input type="text" id="input-numColors" value=""><br />
+              </div>
+            </div>
+            <input type="button" id="btn-startGame" class='hidden' value="Start Game">
+          </form>
+        </div>
+      </div>
+      <div id="game-container" class="hidden">
+        <p>Choose the lightest color:</p>
+        <div class="color-box-container"></div>
+      </div>
+      <div id="endgame-container" class="hidden">
+        <p id="game-results">Your score was: </p>
+        <input type="button" id="btn-newGame" value="Play Again">
+        <p>Correct Answers:</p>
+        <div id="correct-answer-list"></div>
+        <p>Incorrect Answers:</p>
+        <div id="incorrect-answer-list">
+        </div>
       </div>
     </div>
   </body>
