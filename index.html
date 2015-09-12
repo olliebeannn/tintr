@@ -20,21 +20,22 @@
           <form id="user-input" action="">
             <div class="row">
               <div class="col-xs-offset-3 col-xs-3">
-                <p># of Questions</p>
+                <p class="user-input-label">Number of Questions</p>
                 <p class='hidden errorMessage' id='numQuestions-error'>Enter a number between 0 and 20, brah.</p>
                 <input type="text" id="input-numQuestions" value=""><br />
               </div>
               <div class="col-xs-3">
-                <p># of Colours</p>
+                <p class="user-input-label">Number of Colours</p>
                 <p class='hidden errorMessage' id='numColors-error'>Enter a number between 2 and 5, brah.</p>
                 <input type="text" id="input-numColors" value=""><br />
               </div>
             </div>
-            <input type="button" id="btn-startGame" class='hidden' value="Start Game">
+            <input type="button" id="btn-startGame" class='' value="START">
           </form>
         </div>
       </div>
       <div id="game-container" class="hidden">
+        <p id="question-counter">Question</p>
         <p>Choose the lightest color:</p>
         <div class="color-box-container"></div>
       </div>

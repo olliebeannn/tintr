@@ -1,32 +1,42 @@
+/*All Presentational CSS*/
+
 body {
-  /*color: white;*/
+  background-color: #111;
+  color: white;
   font-family: 'Open Sans';
   font-size: 24px;
   font-weight: 300;
+  line-height: 1.3333333em;
+  text-align: center;
 }
 
 h1 {
   font-size: 3em;
   font-weight: 400;
+  margin-top: 2em;
+  line-height: 1.3333333em;
 }
 
 h3 {
   font-size: 1em;
 }
 
-.center {
-  text-align: center;
+.user-input-label {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.875em;
+  margin-top: 1.5em;
+  text-transform: uppercase;
 }
 
 .color-box {
-  /*background-color: #000000;*/
   display: inline-block;
   height: 100px;
   width: 100px;
 }
 
 .errorMessage {
-  color: red;
+  color: #FF798A;
+  font-size: 0.583333333em;
 }
 
 .hidden {
@@ -35,5 +45,24 @@ h3 {
 
 input[type="button"] {
   display: block;
+  letter-spacing: 2px;
   margin: 0 auto;
+}
+
+input[type="text"] {
+  background-color: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 2px;
+  height: 40px;
+  margin-top: 10px;
+  width: 60px;
+}
+
+#btn-startGame {
+  background: none;
+  border: 2px solid #EEE;
+  border-radius: 6px;
+  height: 64px;
+  margin-top: 2.66666666667em;
+  width: 180px;
 }

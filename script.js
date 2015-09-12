@@ -12,7 +12,7 @@ $(document).ready(function() {
     $('#startgame-container').addClass('hidden');
     $('#game-container').removeClass('hidden');
 
-    //Create number of color boxes based on input
+    //Create number of color boxes based on input, set question label
     createBoxes(game.numberOfColors);
 
     //Generate next question
@@ -116,6 +116,8 @@ function Game(numQuestions, numColors) {
 
     this.currentQuestion = question;
     setBackgroundColors(this.currentQuestion.colors);
+
+    this.setQuestionCounterLabel();
   }
 
   this.displayResults = function() {
@@ -129,6 +131,16 @@ function Game(numQuestions, numColors) {
 
     $('#endgame-container').removeClass('hidden');
   }
+
+  this.setQuestionCounterLabel = function() {
+    var labelText = "Question " + (this.questionsAnswered+1) + " / " + this.numberOfQuestions;
+    $('#question-counter').text(labelText);
+  }
+}
+
+function setQuestionCounterLabel(game) {
+  var labelText = "Question " + (game.questionsAnswered+1) + " / " + game.numberOfQuestions;
+  $('#question-counter').text(labelText);
 }
 
 function setBackgroundColors(colors) {
