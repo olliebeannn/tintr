@@ -14,7 +14,6 @@ body {
 h1 {
   font-size: 3em;
   font-weight: 400;
-  margin-top: 2em;
   line-height: 1.3333333em;
 }
 
@@ -22,17 +21,18 @@ h3 {
   font-size: 1em;
 }
 
+.title {
+  margin-top: 2em;
+}
+
 .user-input-label {
-  color: rgba(255,255,255,0.6);
   font-size: 0.875em;
   margin-top: 1.5em;
   text-transform: uppercase;
 }
 
 .color-box {
-  display: inline-block;
   height: 100px;
-  width: 100px;
 }
 
 .errorMessage {
@@ -44,10 +44,15 @@ h3 {
   display: none;
 }
 
+.light-font {
+  color: rgba(255,255,255,0.6);
+}
+
 input[type="button"] {
+  background: none;
   display: block;
   letter-spacing: 2px;
-  margin: 0 auto;
+  margin: 2.66666666667em auto 0 auto;
 }
 
 input[type="text"] {
@@ -60,11 +65,18 @@ input[type="text"] {
   width: 60px;
 }
 
-#btn-startGame {
-  background: none;
+.btn-large {
   border: 2px solid #EEE;
   border-radius: 6px;
-  height: 64px;
-  margin-top: 2.66666666667em;
-  width: 180px;
+  font-size: 1em;
+  padding: 0.5em 1.5em;
+}
+
+#question-counter {
+  margin-top: 5em;
+}
+
+#instructions {
+  margin-top: 1.333333em;
+  margin-bottom: 0.8333333em;
 }

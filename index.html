@@ -14,38 +14,43 @@
       <div class="row">
         <div id="startgame-container" class="col-xs-12">
           <div class="row">
-            <h1 class="center col-xs-offset-3 col-xs-6">Tintr</h1>
-            <h3 class="center col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6">Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
+            <h1 class="title col-xs-offset-3 col-xs-6">Tintr</h1>
+            <h3 class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6">Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
           </div>
           <form id="user-input" action="">
             <div class="row">
               <div class="col-xs-offset-3 col-xs-3">
-                <p class="user-input-label">Number of Questions</p>
+                <p class="user-input-label light-font">Number of Questions</p>
                 <p class='hidden errorMessage' id='numQuestions-error'>Enter a number between 0 and 20, brah.</p>
                 <input type="text" id="input-numQuestions" value=""><br />
               </div>
               <div class="col-xs-3">
-                <p class="user-input-label">Number of Colours</p>
+                <p class="user-input-label light-font">Number of Colours</p>
                 <p class='hidden errorMessage' id='numColors-error'>Enter a number between 2 and 5, brah.</p>
                 <input type="text" id="input-numColors" value=""><br />
               </div>
             </div>
-            <input type="button" id="btn-startGame" class='hidden' value="START">
+            <input type="button" id="btn-startGame" class='btn-large hidden' value="START">
           </form>
         </div>
       </div>
-      <div id="game-container" class="hidden">
-        <p id="question-counter">Question</p>
-        <p>Choose the lightest color:</p>
-        <div class="color-box-container"></div>
+      <div class="row">
+        <div id="game-container" class="hidden col-xs-12">
+          <h3 id="question-counter" class='light-font'>Question</h3>
+          <h1 class="timer">1:00</h1>
+          <h3 id="instructions">Choose the lightest color:</h3>
+          <div class="color-box-container"></div>
+        </div>
       </div>
-      <div id="endgame-container" class="hidden">
-        <p id="game-results">Your score was: </p>
-        <input type="button" id="btn-newGame" value="Play Again">
-        <p>Correct Answers:</p>
-        <div id="correct-answer-list"></div>
-        <p>Incorrect Answers:</p>
-        <div id="incorrect-answer-list">
+      <div class="row">
+        <div id="endgame-container" class="hidden col-xs-12">
+          <p id="game-results">Your score was: </p>
+          <input type="button" id="btn-newGame" class='btn-large' value="PLAY AGAIN">
+          <p>Correct Answers:</p>
+          <div id="correct-answer-list"></div>
+          <p>Incorrect Answers:</p>
+          <div id="incorrect-answer-list">
+          </div>
         </div>
       </div>
     </div>

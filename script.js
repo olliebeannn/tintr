@@ -53,9 +53,24 @@ $(document).ready(function() {
 })
 
 function createBoxes(numColors) {
+  var colOffset = (12 - (numColors * 2)) / 2;
+  var colOffsetString = "col-xs-offset-" + colOffset;
+
   for(var i = 0; i < numColors; i++) {
-    var newBox = $('<div></div>').addClass('color-box').attr('id', i.toString());
+    var newBox = $('<div></div>').addClass('color-box').addClass('col-xs-2').attr('id', i.toString());
+    if(i == 0) {
+      newBox.addClass(colOffsetString);
+    }
     $('.color-box-container').append(newBox);
+  }
+
+  //Set box height equal to box width
+  var boxes = $('.color-box');
+  var boxWidth = $(boxes[0]).width();
+  console.log(boxWidth);
+
+  for(var j = 0; j < boxes.length; j++) {
+    $(boxes[j]).css('height', boxWidth + 'px');
   }
 }
 
