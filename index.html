@@ -19,13 +19,13 @@
           </div>
           <form id="user-input" action="">
             <div class="row">
-              <div class="col-xs-offset-3 col-xs-3">
-                <p class="user-input-label light-font">Number of Questions</p>
+              <div class="col-sm-offset-2 col-sm-4">
+                <p class="list-input-label light-font">Number of Questions</p>
                 <p class='hidden errorMessage' id='numQuestions-error'>Enter a number between 0 and 20, brah.</p>
                 <input type="text" id="input-numQuestions" value=""><br />
               </div>
-              <div class="col-xs-3">
-                <p class="user-input-label light-font">Number of Colours</p>
+              <div class="col-sm-4">
+                <p class="list-input-label light-font">Number of Colours</p>
                 <p class='hidden errorMessage' id='numColors-error'>Enter a number between 2 and 5, brah.</p>
                 <input type="text" id="input-numColors" value=""><br />
               </div>
@@ -44,12 +44,17 @@
       </div>
       <div class="row">
         <div id="endgame-container" class="hidden col-xs-12">
-          <p id="game-results">Your score was: </p>
+          <h3 id="game-results-intro">You Scored:</h3>
+          <h1 id="game-results"></h1>
           <input type="button" id="btn-newGame" class='btn-large' value="PLAY AGAIN">
-          <p>Correct Answers:</p>
-          <div id="correct-answer-list"></div>
-          <p>Incorrect Answers:</p>
-          <div id="incorrect-answer-list">
+          <div class="col-xs-6">
+            <p class="list-input-label light-font">Correct Answers:</p>
+            <div id="correct-answer-list"></div>
+          </div>
+          <div class="col-xs-6">
+            <p class="list-input-label light-font">Incorrect Answers:</p>
+            <div id="incorrect-answer-list">
+          </div>
           </div>
         </div>
       </div>

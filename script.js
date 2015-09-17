@@ -25,9 +25,9 @@ $(document).ready(function() {
       $(boxes[i]).click(function() {
         if($(this).attr('id') == game.currentQuestion.brightestColorIndex) {
           console.log("That's right!");
+          // $(this).addClass('color-box-correct');
           game.numberCorrect++;
           game.correctlyAnswered.push(game.currentQuestion.colors);
-          // console.log(game.correctlyAnswered);
         }
         else {
           console.log("Try again...");
@@ -39,7 +39,6 @@ $(document).ready(function() {
         //Create the next question if there are still more to go
         if(game.questionsAnswered < game.numberOfQuestions) {
           game.generateQuestion();
-          // console.log(game.currentQuestion);
         }
         //Or show results if all questions have been asked
         else {
@@ -136,15 +135,17 @@ function Game(numQuestions, numColors) {
   }
 
   this.displayResults = function() {
-    //Hide the game container
+    //Hide the game container, reveal endgame container
     $('#game-container').addClass('hidden');
+    $('#endgame-container').removeClass('hidden');
 
     //Build endgame results and show them
-    $('#game-results').text("You got " + this.numberCorrect + ' out of ' + this.numberOfQuestions + ' right.');
-    makeAnswersList(this.correctlyAnswered, $('#correct-answer-list'));
-    makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'));
+    var scorePercentage = Math.floor((this.numberCorrect / this.numberOfQuestions) * 100);
+    $('#game-results').text(scorePercentage + "% (" + this.numberCorrect + '/' + this.numberOfQuestions + ')');
+    makeAnswersList(this.correctlyAnswered, $('#correct-answer-list'), true);
+    makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'), false);
 
-    $('#endgame-container').removeClass('hidden');
+
   }
 
   this.setQuestionCounterLabel = function() {
@@ -165,15 +166,15 @@ function setBackgroundColors(colors) {
   }
 }
 
-function makeAnswersList(answers, list) {
+function makeAnswersList(answers, list, left) {
   for(var i = 0; i < answers.length; i++) {
     var colorGroup = answers[i];
-    var colorGroupContainer = $("<div class='color-group-container'></div>").appendTo(list);
+    var colorGroupContainer = $("<div class='color-group-container col-xs-12'></div>").appendTo(list);
     for(var j = 0; j < colorGroup.length; j++) {
       var colorBox = $("<div></div>").appendTo(colorGroupContainer);
-      colorBox.addClass('color-box');
+      colorBox.addClass('color-box').addClass('col-xs-2');
       colorBox.css('backgroundColor', colorGroup[j]);
-      // console.log(colorGroup[j]);
+      colorBox.css('height', colorBox.width() + 20);
     }
   }
 }
