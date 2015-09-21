@@ -142,6 +142,7 @@ function Game(numQuestions, numColors) {
     //Build endgame results and show them
     var scorePercentage = Math.floor((this.numberCorrect / this.numberOfQuestions) * 100);
     $('#game-results').text(scorePercentage + "% (" + this.numberCorrect + '/' + this.numberOfQuestions + ')');
+
     makeAnswersList(this.correctlyAnswered, $('#correct-answer-list'), true);
     makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'), false);
 
@@ -175,6 +176,11 @@ function makeAnswersList(answers, list, left) {
       colorBox.addClass('color-box').addClass('col-xs-2');
       colorBox.css('backgroundColor', colorGroup[j]);
       colorBox.css('height', colorBox.width() + 20);
+
+      if(j == 0) {
+        var colOffset = (6 - colorGroup.length);
+        colorBox.addClass('col-xs-offset-' + colOffset);
+      }
     }
   }
 }

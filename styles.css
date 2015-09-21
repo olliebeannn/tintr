@@ -28,6 +28,7 @@ h3 {
 .list-input-label {
   font-size: 0.875em;
   margin-top: 1.5em;
+  margin-bottom: 0.5em;
   text-transform: uppercase;
 }
 
@@ -68,7 +69,6 @@ input[type="text"] {
   border: none;
   border-radius: 2px;
   height: 40px;
-  margin-top: 10px;
   text-align: center;
   width: 60px;
 }
