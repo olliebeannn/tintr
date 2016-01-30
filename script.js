@@ -2,7 +2,11 @@
 $(document).ready(function() {
   var game;
 
-  $('#input-numQuestions, #input-numColors').blur(checkUserInput);
+  // $('#input-numQuestions, #input-numColors').blur(checkUserInput);
+  // $('#input-numQuestions').blur(checkInput($('#input-numQuestions'), 2, $('btn-numQuestions')));
+  $('#input-numQuestions').keyup(function() {
+    checkInput($('#input-numQuestions'), 2, 10);
+  });
 
   $('#btn-startGame').click(function() {
     var numQuestions = $('#input-numQuestions').val();
@@ -209,6 +213,24 @@ function checkUserInput() {
   else {
     $('#numColors-error').addClass('hidden');
     if(!numQuestionsInputInvalid) $('#btn-startGame').removeClass('hidden');
+  }
+}
+
+function checkInput(field, rangeLow, rangeHigh, button) {
+  // console.log("Hi!");
+  var val = parseInt(field.val());
+  // console.log(val);
+  if(isNaN(val)) {
+    $('#btn-numQuestions').addClass('hidden');
+    $('#error').removeClass('hidden');
+    $('#error').text('Enter a number, brah.');
+  } else if(val < rangeLow || val > rangeHigh) {
+    $('#btn-numQuestions').addClass('hidden');
+    $('#error').removeClass('hidden');
+    $('#error').text('Enter a number between ' + rangeLow + ' and ' + rangeHigh + ', brah.');
+  } else {
+    $('#btn-numQuestions').removeClass('hidden');
+    $('#error').text('');
   }
 }
 

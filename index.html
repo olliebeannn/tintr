@@ -18,10 +18,11 @@
             <h3>Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
           </div>
           <form id="user-input" action="">
-            <p class="list-input-label light-font">Number of Questions</p>
-            <p class='hidden errorMessage' id='numQuestions-error'>Enter a number between 0 and 20, brah.</p>
+            <p class="list-input-label light-font">How many rounds do you want?</p>
+            <p class='hidden errorMessage' id='error'></p>
             <input type="text" id="input-numQuestions" value="">
-            <p class="list-input-label light-font">Number of Colours</p>
+            <input type='button' id='btn-numQuestions' class='' value='->'>
+            <p class="list-input-label light-font">How many colours each round?</p>
             <p class='hidden errorMessage' id='numColors-error'>Enter a number between 2 and 5, brah.</p>
             <input type="text" id="input-numColors" value="">
             <input type="button" id="btn-startGame" class='btn-large hidden' value="START">
