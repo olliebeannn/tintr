@@ -1,16 +1,33 @@
 //This is a comemnt
 $(document).ready(function() {
-  var game;
+  var game, numQuestions, numColors;
 
   // $('#input-numQuestions, #input-numColors').blur(checkUserInput);
-  // $('#input-numQuestions').blur(checkInput($('#input-numQuestions'), 2, $('btn-numQuestions')));
-  $('#input-numQuestions').keyup(function() {
-    checkInput($('#input-numQuestions'), 2, 10);
+  //Get number questions
+  $('#input-field-numQuestions').keyup(function() {
+    checkInput($('#input-field-numQuestions'), 2, 10, $('#input-button-numQuestions'), $('#input-error-numQuestions'));
   });
+  $('#input-button-numQuestions').click(function() {
+    numQuestions = $('#input-field-numQuestions').val();
+    $('#section-numQuestions').addClass('hidden');
+    $('#section-numColors').removeClass('hidden');
+    // console.log('numQuestions = ' + numQuestions);
+  })
+
+  //Get number of colours
+  $('#input-field-numColors').keyup(function() {
+    checkInput($('#input-field-numColors'), 2, 10, $('#input-button-numColors'), $('#input-error-numColors'));
+  });
+  $('#input-button-numColors').click(function() {
+    numColors = $('#input-field-numColors').val();
+    $('#section-numColors').addClass('hidden');
+    // console.log('numQuestions = ' + numQuestions);
+    // console.log('numColors = ' + numColors);
+  })
 
   $('#btn-startGame').click(function() {
-    var numQuestions = $('#input-numQuestions').val();
-    var numColors = $('#input-numColors').val();
+    // var numQuestions = $('#input-numQuestions').val();
+    // var numColors = $('#input-numColors').val();
 
     //Create a game with a number of questions, right and wrong answers
     game = new Game(numQuestions, numColors);
@@ -216,21 +233,21 @@ function checkUserInput() {
   }
 }
 
-function checkInput(field, rangeLow, rangeHigh, button) {
+function checkInput(field, rangeLow, rangeHigh, button, error) {
   // console.log("Hi!");
   var val = parseInt(field.val());
   // console.log(val);
   if(isNaN(val)) {
-    $('#btn-numQuestions').addClass('hidden');
-    $('#error').removeClass('hidden');
-    $('#error').text('Enter a number, brah.');
+    button.addClass('hidden');
+    error.removeClass('hidden');
+    error.text('Enter a number, brah.');
   } else if(val < rangeLow || val > rangeHigh) {
-    $('#btn-numQuestions').addClass('hidden');
-    $('#error').removeClass('hidden');
-    $('#error').text('Enter a number between ' + rangeLow + ' and ' + rangeHigh + ', brah.');
+    button.addClass('hidden');
+    error.removeClass('hidden');
+    error.text('Enter a number between ' + rangeLow + ' and ' + rangeHigh + ', brah.');
   } else {
-    $('#btn-numQuestions').removeClass('hidden');
-    $('#error').text('');
+    button.removeClass('hidden');
+    error.text('');
   }
 }
 

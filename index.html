@@ -12,19 +12,27 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div id="startgame-container">
+        <div id="startgame-container"> 
           <div class="row">
             <h1 class="title">Tintr</h1>
             <h3>Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
           </div>
           <form id="user-input" action="">
-            <p class="list-input-label light-font">How many rounds do you want?</p>
-            <p class='hidden errorMessage' id='error'></p>
-            <input type="text" id="input-numQuestions" value="">
-            <input type='button' id='btn-numQuestions' class='' value='->'>
-            <p class="list-input-label light-font">How many colours each round?</p>
-            <p class='hidden errorMessage' id='numColors-error'>Enter a number between 2 and 5, brah.</p>
-            <input type="text" id="input-numColors" value="">
+            <!-- Inputs for number of questions -->
+            <div id="section-numQuestions">
+              <p id='input-label-numQuestions' class="list-input-label light-font">How many rounds do you want?</p>
+              <input type="text" id="input-field-numQuestions" value="">
+              <p class='hidden errorMessage' id='input-error-numQuestions'></p>
+              <input type='button' id='input-button-numQuestions' class='hidden' value='->'>
+            </div>
+            <!--Inputs for number of colours in game-->
+            <div id="section-numColors" class='hidden'>
+              <p id='input-label-numColors' class="list-input-label light-font">How many colours do you want to compare each round?</p>
+              <input type="text" id="input-field-numColors" value="">
+              <p class='hidden errorMessage' id='input-error-numColors'></p>
+              <input type='button' id='input-button-numColors' class='hidden' value='->'>
+            </div>
+
             <input type="button" id="btn-startGame" class='btn-large hidden' value="START">
           </form>
         </div>
