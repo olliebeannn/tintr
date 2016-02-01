@@ -10,57 +10,49 @@
     <script type="text/javascript" src='script.js'></script>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div id="startgame-container">
-          <div class="row">
-            <h1 class="title">Tintr</h1>
-            <h3>Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
-          </div>
-          <form id="user-input" action="">
-            <!-- Inputs for number of questions -->
-            <div id="section-numQuestions">
-              <p id='input-label-numQuestions' class="list-input-label light-font">How many rounds do you want?</p>
-              <input type="text" id="input-field-numQuestions" value="">
-              <p class='hidden errorMessage' id='input-error-numQuestions'></p>
-              <input type='button' id='input-button-numQuestions' class='hidden' value='->'>
-            </div>
-            <!--Inputs for number of colours in game-->
-            <div id="section-numColors" class='hidden'>
-              <p id='input-label-numColors' class="list-input-label light-font">How many colours do you want to compare each round?</p>
-              <input type="text" id="input-field-numColors" value="">
-              <p class='hidden errorMessage' id='input-error-numColors'></p>
-              <input type='button' id='input-button-numColors' class='hidden' value='->'>
-            </div>
-            <!-- Inputs for game type -->
-            <div id="section-gameType" class='hidden'>
-              <p id='input-label-gameType' class="list-input-label light-font">How do you want to test your colour perception - lightness or saturation?</p>
-              <input type="button" id='gameType-lightness' data-mode='lightness' value="Lightness">
-              <input type="button" id='gameType-saturation' data-mode='saturation' value="Saturation">
-            </div>
-
-            <input type="button" id="button-startGame" class='btn-large hidden' value="START">
-          </form>
+    <div id="startgame-container">
+      <h1 class="title">Tintr</h1>
+      <h3>Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
+      <form id="user-input" action="">
+        <!-- Inputs for number of questions -->
+        <div id="section-numQuestions">
+          <p id='input-label-numQuestions' class="list-input-label light-font">How many rounds do you want?</p>
+          <input type="text" id="input-field-numQuestions" value="">
+          <p class='hidden errorMessage' id='input-error-numQuestions'></p>
+          <input type='button' id='input-button-numQuestions' class='hidden' value='->'>
         </div>
-      </div>
-      <div class="row">
-        <div id="game-container" class="hidden">
-          <h3 id="question-counter" class='light-font'>Question</h3>
-          <h3 id="instructions">Choose the lightest color:</h3>
-          <div class="color-box-container"></div>
+        <!--Inputs for number of colours in game-->
+        <div id="section-numColors" class='hidden'>
+          <p id='input-label-numColors' class="list-input-label light-font">How many colours do you want to compare each round?</p>
+          <input type="text" id="input-field-numColors" value="">
+          <p class='hidden errorMessage' id='input-error-numColors'></p>
+          <input type='button' id='input-button-numColors' class='hidden' value='->'>
         </div>
-      </div>
-      <div class="row">
-        <div id="endgame-container" class="hidden">
-          <h3 id="game-results-intro">You Scored:</h3>
-          <h1 id="game-results"></h1>
-          <input type="button" id="btn-newGame" class='btn-large' value="PLAY AGAIN">
-          <p class="list-input-label light-font center">Correct:</p>
-          <div id="correct-answer-list"></div>
-          <p class="list-input-label light-font center">Incorrect:</p>
-          <div id="incorrect-answer-list"></div>
+        <!-- Inputs for game type -->
+        <div id="section-gameType" class='hidden'>
+          <p id='input-label-gameType' class="list-input-label light-font">How do you want to test your colour perception - lightness or saturation?</p>
+          <input type="button" id='gameType-lightness' data-mode='lightness' value="Lightness">
+          <input type="button" id='gameType-saturation' data-mode='saturation' value="Saturation">
         </div>
-      </div>
+        <!-- Start game button -->
+        <input type="button" id="button-startGame" class='btn-large hidden' value="START">
+      </form>
+    </div>
+    <!-- Game container -->
+    <div id="game-container" class="hidden">
+      <h3 id="question-counter" class='light-font'>Question</h3>
+      <h3 id="instructions">Choose the lightest color:</h3>
+      <div class="color-box-container"></div>
+    </div>
+    <!-- Endgame container -->
+    <div id="endgame-container" class="hidden">
+      <h3 id="game-results-intro">You Scored:</h3>
+      <h1 id="game-results"></h1>
+      <input type="button" id="btn-newGame" class='btn-large' value="PLAY AGAIN">
+      <p class="list-input-label light-font center">Correct:</p>
+      <div id="correct-answer-list"></div>
+      <p class="list-input-label light-font center">Incorrect:</p>
+      <div id="incorrect-answer-list"></div>
     </div>
   </body>
 </html>
