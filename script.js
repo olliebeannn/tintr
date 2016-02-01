@@ -1,8 +1,7 @@
 //This is a comemnt
 $(document).ready(function() {
-  var game, numQuestions, numColors;
+  var game, numQuestions, numColors, gameType;
 
-  // $('#input-numQuestions, #input-numColors').blur(checkUserInput);
   //Get number questions
   $('#input-field-numQuestions').keyup(function() {
     checkInput($('#input-field-numQuestions'), 2, 10, $('#input-button-numQuestions'), $('#input-error-numQuestions'));
@@ -21,11 +20,19 @@ $(document).ready(function() {
   $('#input-button-numColors').click(function() {
     numColors = $('#input-field-numColors').val();
     $('#section-numColors').addClass('hidden');
+    $('#section-gameType').removeClass('hidden');
     // console.log('numQuestions = ' + numQuestions);
     // console.log('numColors = ' + numColors);
   })
 
-  $('#btn-startGame').click(function() {
+  $('#gameType-lightness, #gameType-saturation').click(function() {
+    $('#section-gameType').addClass('hidden');
+    gameType = $(this).attr('data-mode');
+    console.log(gameType);
+    $('#button-startGame').removeClass('hidden');
+  })
+
+  $('#button-startGame').click(function() {
     // var numQuestions = $('#input-numQuestions').val();
     // var numColors = $('#input-numColors').val();
 
@@ -35,7 +42,7 @@ $(document).ready(function() {
     $('#game-container').removeClass('hidden');
 
     //Create number of color boxes based on input, set question label
-    createBoxes(game.numberOfColors);
+    createBoxes(game.numColors);
 
     //Generate next question
     game.generateQuestion();
@@ -59,7 +66,7 @@ $(document).ready(function() {
         game.questionsAnswered++;
 
         //Create the next question if there are still more to go
-        if(game.questionsAnswered < game.numberOfQuestions) {
+        if(game.questionsAnswered < game.numQuestions) {
           game.generateQuestion();
         }
         //Or show results if all questions have been asked
@@ -95,33 +102,9 @@ function createBoxes(numColors) {
   }
 }
 
-function generateQuestion(numColors) {
-  var question = {};
-  var colors = [];
-  var brightestColorIndex;
-  var brightestLValue = 0;
-
-  for(var i = 0; i < numColors; i++) {
-    var h = Math.random()*360;
-    var s = Math.random()*100;
-    var l = Math.random()*100;
-
-    if(l > brightestLValue) {
-      brightestColorIndex = i;
-      brightestLValue = l;
-    }
-
-    colors[i] = "hsl(" + h + "," + s + "%," + l + "%)";
-  }
-
-  question.colors = colors;
-  question.brightestColorIndex = brightestColorIndex;
-  return question;
-}
-
 function Game(numQuestions, numColors) {
-  this.numberOfQuestions = numQuestions;
-  this.numberOfColors = numColors;
+  this.numQuestions = numQuestions;
+  this.numColors = numColors;
   this.numberCorrect = 0;
   this.questionsAnswered = 0;
   this.currentQuestion;
@@ -134,7 +117,7 @@ function Game(numQuestions, numColors) {
     var brightestColorIndex;
     var brightestLValue = 0;
 
-    for(var i = 0; i < this.numberOfColors; i++) {
+    for(var i = 0; i < this.numColors; i++) {
       var h = Math.random()*360;
       var s = Math.random()*100;
       var l = Math.random()*100;
@@ -162,8 +145,8 @@ function Game(numQuestions, numColors) {
     $('#endgame-container').removeClass('hidden');
 
     //Build endgame results and show them
-    var scorePercentage = Math.floor((this.numberCorrect / this.numberOfQuestions) * 100);
-    $('#game-results').text(scorePercentage + "% (" + this.numberCorrect + '/' + this.numberOfQuestions + ')');
+    var scorePercentage = Math.floor((this.numberCorrect / this.numQuestions) * 100);
+    $('#game-results').text(scorePercentage + "% (" + this.numberCorrect + '/' + this.numQuestions + ')');
 
     makeAnswersList(this.correctlyAnswered, $('#correct-answer-list'), true);
     makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'), false);
@@ -172,13 +155,13 @@ function Game(numQuestions, numColors) {
   }
 
   this.setQuestionCounterLabel = function() {
-    var labelText = "Question " + (this.questionsAnswered+1) + " / " + this.numberOfQuestions;
+    var labelText = "Question " + (this.questionsAnswered+1) + " / " + this.numQuestions;
     $('#question-counter').text(labelText);
   }
 }
 
 function setQuestionCounterLabel(game) {
-  var labelText = "Question " + (game.questionsAnswered+1) + " / " + game.numberOfQuestions;
+  var labelText = "Question " + (game.questionsAnswered+1) + " / " + game.numQuestions;
   $('#question-counter').text(labelText);
 }
 
@@ -204,32 +187,6 @@ function makeAnswersList(answers, list, left) {
         colorBox.addClass('col-xs-offset-' + colOffset);
       }
     }
-  }
-}
-
-function checkUserInput() {
-  var numQuestionsInput = parseInt($('#input-numQuestions').val());
-  var numColorsInput = parseInt($('#input-numColors').val());
-
-  var numQuestionsInputInvalid = isNaN(numQuestionsInput) || (numQuestionsInput < 0) || (numQuestionsInput > 20);
-  var numColorsInputInvalid = isNaN(numColorsInput) || (numColorsInput < 2) || (numColorsInput > 5);
-
-  if(numQuestionsInputInvalid) {
-    $('#numQuestions-error').removeClass('hidden');
-    $('#btn-startGame').addClass('hidden');
-  }
-  else {
-    $('#numQuestions-error').addClass('hidden');
-    if(!numColorsInputInvalid) $('#btn-startGame').removeClass('hidden');
-  }
-
-  if(numColorsInputInvalid) {
-    $('#numColors-error').removeClass('hidden');
-    $('#btn-startGame').addClass('hidden');
-  }
-  else {
-    $('#numColors-error').addClass('hidden');
-    if(!numQuestionsInputInvalid) $('#btn-startGame').removeClass('hidden');
   }
 }
 
@@ -259,4 +216,57 @@ function resetGame() {
 
   $('#endgame-container').addClass('hidden');
   $('#startgame-container').removeClass('hidden');
+  $('#section-numQuestions').removeClass('hidden');
+  $('#button-startGame').addClass('hidden');
 }
+
+// function checkUserInput() {
+//   var numQuestionsInput = parseInt($('#input-numQuestions').val());
+//   var numColorsInput = parseInt($('#input-numColors').val());
+//
+//   var numQuestionsInputInvalid = isNaN(numQuestionsInput) || (numQuestionsInput < 0) || (numQuestionsInput > 20);
+//   var numColorsInputInvalid = isNaN(numColorsInput) || (numColorsInput < 2) || (numColorsInput > 5);
+//
+//   if(numQuestionsInputInvalid) {
+//     $('#numQuestions-error').removeClass('hidden');
+//     $('#btn-startGame').addClass('hidden');
+//   }
+//   else {
+//     $('#numQuestions-error').addClass('hidden');
+//     if(!numColorsInputInvalid) $('#btn-startGame').removeClass('hidden');
+//   }
+//
+//   if(numColorsInputInvalid) {
+//     $('#numColors-error').removeClass('hidden');
+//     $('#btn-startGame').addClass('hidden');
+//   }
+//   else {
+//     $('#numColors-error').addClass('hidden');
+//     if(!numQuestionsInputInvalid) $('#btn-startGame').removeClass('hidden');
+//   }
+// }
+
+// function generateQuestion(numColors) {
+//   console.log('used!');
+//   var question = {};
+//   var colors = [];
+//   var brightestColorIndex;
+//   var brightestLValue = 0;
+//
+//   for(var i = 0; i < numColors; i++) {
+//     var h = Math.random()*360;
+//     var s = Math.random()*100;
+//     var l = Math.random()*100;
+//
+//     if(l > brightestLValue) {
+//       brightestColorIndex = i;
+//       brightestLValue = l;
+//     }
+//
+//     colors[i] = "hsl(" + h + "," + s + "%," + l + "%)";
+//   }
+//
+//   question.colors = colors;
+//   question.brightestColorIndex = brightestColorIndex;
+//   return question;
+// }

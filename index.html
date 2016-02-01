@@ -12,7 +12,7 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div id="startgame-container"> 
+        <div id="startgame-container">
           <div class="row">
             <h1 class="title">Tintr</h1>
             <h3>Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
@@ -32,15 +32,20 @@
               <p class='hidden errorMessage' id='input-error-numColors'></p>
               <input type='button' id='input-button-numColors' class='hidden' value='->'>
             </div>
+            <!-- Inputs for game type -->
+            <div id="section-gameType" class='hidden'>
+              <p id='input-label-gameType' class="list-input-label light-font">How do you want to test your colour perception - lightness or saturation?</p>
+              <input type="button" id='gameType-lightness' data-mode='lightness' value="Lightness">
+              <input type="button" id='gameType-saturation' data-mode='saturation' value="Saturation">
+            </div>
 
-            <input type="button" id="btn-startGame" class='btn-large hidden' value="START">
+            <input type="button" id="button-startGame" class='btn-large hidden' value="START">
           </form>
         </div>
       </div>
       <div class="row">
         <div id="game-container" class="hidden">
           <h3 id="question-counter" class='light-font'>Question</h3>
-          <h1 class="timer">1:00</h1>
           <h3 id="instructions">Choose the lightest color:</h3>
           <div class="color-box-container"></div>
         </div>
