@@ -4,7 +4,7 @@ $(document).ready(function() {
 
   //Get number questions
   $('#input-field-numQuestions').keyup(function() {
-    checkInput($('#input-field-numQuestions'), 2, 10, $('#input-button-numQuestions'), $('#input-error-numQuestions'));
+    checkInput($('#input-field-numQuestions'), 1, 10, $('#input-button-numQuestions'), $('#input-error-numQuestions'));
   });
   $('#input-button-numQuestions').click(function() {
     numQuestions = $('#input-field-numQuestions').val();
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
   //Get number of colours
   $('#input-field-numColors').keyup(function() {
-    checkInput($('#input-field-numColors'), 2, 10, $('#input-button-numColors'), $('#input-error-numColors'));
+    checkInput($('#input-field-numColors'), 2, 4, $('#input-button-numColors'), $('#input-error-numColors'));
   });
   $('#input-button-numColors').click(function() {
     numColors = $('#input-field-numColors').val();
@@ -26,9 +26,8 @@ $(document).ready(function() {
   })
 
   $('#gameType-lightness, #gameType-saturation').click(function() {
-    $('#section-gameType').addClass('hidden');
     gameType = $(this).attr('data-mode');
-    console.log(gameType);
+    $('#section-gameType').addClass('hidden');
     $('#button-startGame').removeClass('hidden');
   })
 
@@ -37,9 +36,13 @@ $(document).ready(function() {
     // var numColors = $('#input-numColors').val();
 
     //Create a game with a number of questions, right and wrong answers
-    game = new Game(numQuestions, numColors);
+    game = new Game(numQuestions, numColors, gameType);
+    console.log(game.gameType);
     $('#startgame-container').addClass('hidden');
     $('#game-container').removeClass('hidden');
+
+    if(game.gameType == 'lightness') $('#instructions').text("Choose the lightest color:");
+    if(game.gameType == 'saturation') $('#instructions').text("Choose the most saturated color:");
 
     //Create number of color boxes based on input, set question label
     createBoxes(game.numColors);
@@ -52,7 +55,7 @@ $(document).ready(function() {
     var boxes = $('.color-box');
     for(var i = 0; i < boxes.length; i++) {
       $(boxes[i]).click(function() {
-        if($(this).attr('id') == game.currentQuestion.brightestColorIndex) {
+        if($(this).attr('id') == game.currentQuestion.correctAnswerIndex) {
           console.log("That's right!");
           // $(this).addClass('color-box-correct');
           game.numberCorrect++;
@@ -68,6 +71,7 @@ $(document).ready(function() {
         //Create the next question if there are still more to go
         if(game.questionsAnswered < game.numQuestions) {
           game.generateQuestion();
+          console.log(game.currentQuestion);
         }
         //Or show results if all questions have been asked
         else {
@@ -95,16 +99,17 @@ function createBoxes(numColors) {
   //Set box height equal to box width
   var boxes = $('.color-box');
   var boxWidth = $(boxes[0]).width();
-  console.log(boxWidth);
+  // console.log(boxWidth);
 
   for(var j = 0; j < boxes.length; j++) {
     $(boxes[j]).css('height', boxWidth + 'px');
   }
 }
 
-function Game(numQuestions, numColors) {
+function Game(numQuestions, numColors, gameType) {
   this.numQuestions = numQuestions;
   this.numColors = numColors;
+  this.gameType = gameType
   this.numberCorrect = 0;
   this.questionsAnswered = 0;
   this.currentQuestion;
@@ -114,24 +119,33 @@ function Game(numQuestions, numColors) {
   this.generateQuestion = function generateQuestion() {
     var question = {};
     var colors = [];
-    var brightestColorIndex;
-    var brightestLValue = 0;
+    var correctAnswerIndex;
+    var highestValue = 0;
 
     for(var i = 0; i < this.numColors; i++) {
       var h = Math.random()*360;
       var s = Math.random()*100;
       var l = Math.random()*100;
 
-      if(l > brightestLValue) {
-        brightestColorIndex = i;
-        brightestLValue = l;
+      if(this.gameType == 'lightness') {
+        console.log('lightness mode question');
+        if(l > highestValue) {
+          correctAnswerIndex = i;
+          highestValue = l;
+        }
       }
-
+      else if(this.gameType == 'saturation') {
+        console.log('saturation mode question');
+        if(s > highestValue) {
+          correctAnswerIndex = i;
+          highestValue = s;
+        }
+      }
       colors[i] = "hsl(" + h + "," + s + "%," + l + "%)";
     }
 
     question.colors = colors;
-    question.brightestColorIndex = brightestColorIndex;
+    question.correctAnswerIndex = correctAnswerIndex;
 
     this.currentQuestion = question;
     setBackgroundColors(this.currentQuestion.colors);
@@ -219,54 +233,3 @@ function resetGame() {
   $('#section-numQuestions').removeClass('hidden');
   $('#button-startGame').addClass('hidden');
 }
-
-// function checkUserInput() {
-//   var numQuestionsInput = parseInt($('#input-numQuestions').val());
-//   var numColorsInput = parseInt($('#input-numColors').val());
-//
-//   var numQuestionsInputInvalid = isNaN(numQuestionsInput) || (numQuestionsInput < 0) || (numQuestionsInput > 20);
-//   var numColorsInputInvalid = isNaN(numColorsInput) || (numColorsInput < 2) || (numColorsInput > 5);
-//
-//   if(numQuestionsInputInvalid) {
-//     $('#numQuestions-error').removeClass('hidden');
-//     $('#btn-startGame').addClass('hidden');
-//   }
-//   else {
-//     $('#numQuestions-error').addClass('hidden');
-//     if(!numColorsInputInvalid) $('#btn-startGame').removeClass('hidden');
-//   }
-//
-//   if(numColorsInputInvalid) {
-//     $('#numColors-error').removeClass('hidden');
-//     $('#btn-startGame').addClass('hidden');
-//   }
-//   else {
-//     $('#numColors-error').addClass('hidden');
-//     if(!numQuestionsInputInvalid) $('#btn-startGame').removeClass('hidden');
-//   }
-// }
-
-// function generateQuestion(numColors) {
-//   console.log('used!');
-//   var question = {};
-//   var colors = [];
-//   var brightestColorIndex;
-//   var brightestLValue = 0;
-//
-//   for(var i = 0; i < numColors; i++) {
-//     var h = Math.random()*360;
-//     var s = Math.random()*100;
-//     var l = Math.random()*100;
-//
-//     if(l > brightestLValue) {
-//       brightestColorIndex = i;
-//       brightestLValue = l;
-//     }
-//
-//     colors[i] = "hsl(" + h + "," + s + "%," + l + "%)";
-//   }
-//
-//   question.colors = colors;
-//   question.brightestColorIndex = brightestColorIndex;
-//   return question;
-// }
