@@ -94,14 +94,8 @@ $(document).ready(function() {
 })
 
 function createBoxes(numColors) {
-  var colOffset = (12 - (numColors * 2)) / 2;
-  var colOffsetString = "col-xs-offset-" + colOffset;
-
   for(var i = 0; i < numColors; i++) {
-    var newBox = $('<div></div>').addClass('color-box').addClass('col-xs-2').attr('id', i.toString());
-    if(i == 0) {
-      newBox.addClass(colOffsetString);
-    }
+    var newBox = $('<div></div>').addClass('color-box').attr('id', i.toString());
     $('.color-box-container').append(newBox);
   }
 
@@ -198,17 +192,12 @@ function setBackgroundColors(colors) {
 function makeAnswersList(answers, list, left) {
   for(var i = 0; i < answers.length; i++) {
     var colorGroup = answers[i];
-    var colorGroupContainer = $("<div class='color-group-container col-xs-12'></div>").appendTo(list);
+    var colorGroupContainer = $("<div></div>").appendTo(list);
     for(var j = 0; j < colorGroup.length; j++) {
       var colorBox = $("<div></div>").appendTo(colorGroupContainer);
-      colorBox.addClass('color-box').addClass('col-xs-2');
+      colorBox.addClass('color-box');
       colorBox.css('backgroundColor', colorGroup[j]);
       colorBox.css('height', colorBox.width() + 20);
-
-      if(j == 0) {
-        var colOffset = (6 - colorGroup.length);
-        colorBox.addClass('col-xs-offset-' + colOffset);
-      }
     }
   }
 }

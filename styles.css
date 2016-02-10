@@ -33,7 +33,9 @@ h3 {
 }
 
 .color-box {
+  display: inline-block;
   height: 100px;
+  width: 20%;
 }
 
 .color-box-correct {
