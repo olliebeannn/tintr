@@ -47,6 +47,12 @@ $(document).ready(function() {
     //Create number of color boxes based on input, set question label
     createBoxes(game.numColors);
 
+    //Create game indicators
+    for(var i = 0; i < game.numQuestions; i++) {
+      var indicator = $('<div></div>').addClass("question-indicator");
+      $('#question-indicators').append(indicator);
+    }
+
     //Generate next question
     game.generateQuestion();
     console.log(game.currentQuestion);
@@ -58,11 +64,14 @@ $(document).ready(function() {
         if($(this).attr('id') == game.currentQuestion.correctAnswerIndex) {
           console.log("That's right!");
           // $(this).addClass('color-box-correct');
+          // console.log($('.question-indicator')[game.questionsAnswered]);
+          $($('.question-indicator')[game.questionsAnswered]).addClass('question-indicator-correct');
           game.numberCorrect++;
           game.correctlyAnswered.push(game.currentQuestion.colors);
         }
         else {
           console.log("Try again...");
+          $($('.question-indicator')[game.questionsAnswered]).addClass('question-indicator-incorrect');
           game.incorrectlyAnswered.push(game.currentQuestion.colors);
         }
         //Increment # of questions asked
