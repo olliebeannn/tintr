@@ -11,28 +11,28 @@
   </head>
   <body>
     <div id="startgame-container">
-      <h1 class="title">Tintr</h1>
-      <h3>Work your colour skills. Compare 2–5 colours to see if you can pick out the lightest.</h3>
+      <h1 id="title">Tintr</h1>
+      <h3 id="subtitle">Test your colour skills. Can you pick out the lightest or most saturated colour?</h3>
       <form id="user-input" action="">
         <!-- Inputs for number of questions -->
         <div id="section-numQuestions">
-          <p id='input-label-numQuestions' class="list-input-label light-font">How many rounds do you want?</p>
+          <p id='input-label-numQuestions' class="list-input-label light-font">How many rounds do you want to play?</p>
           <input type="text" id="input-field-numQuestions" value="">
           <p class='hidden errorMessage' id='input-error-numQuestions'></p>
-          <input type='button' id='input-button-numQuestions' class='hidden' value='->'>
+          <input type='button' id='input-button-numQuestions' class='hidden btn-large' value='->'>
         </div>
         <!--Inputs for number of colours in game-->
         <div id="section-numColors" class='hidden'>
           <p id='input-label-numColors' class="list-input-label light-font">How many colours do you want to compare each round?</p>
           <input type="text" id="input-field-numColors" value="">
           <p class='hidden errorMessage' id='input-error-numColors'></p>
-          <input type='button' id='input-button-numColors' class='hidden' value='->'>
+          <input type='button' id='input-button-numColors' class='hidden btn-large' value='->'>
         </div>
         <!-- Inputs for game type -->
         <div id="section-gameType" class='hidden'>
           <p id='input-label-gameType' class="list-input-label light-font">How do you want to test your colour perception - lightness or saturation?</p>
-          <input type="button" id='gameType-lightness' data-mode='lightness' value="Lightness">
-          <input type="button" id='gameType-saturation' data-mode='saturation' value="Saturation">
+          <input type="button" class='btn-large' id='gameType-lightness' data-mode='lightness' value="LIGHTNESS">
+          <input type="button" class='btn-large' id='gameType-saturation' data-mode='saturation' value="SATURATION">
         </div>
         <!-- Start game button -->
         <input type="button" id="button-startGame" class='btn-large hidden' value="START">
@@ -40,8 +40,8 @@
     </div>
     <!-- Game container -->
     <div id="game-container" class="hidden">
-      <h3 id="question-counter" class='light-font'>Question</h3>
-      <h3 id="instructions"></h3>
+      <!-- <h3 id="question-counter" class='light-font'>Question</h3> -->
+      <h2 id="instructions"></h3>
       <div class="color-box-container"></div>
       <div id="question-indicators"></div>
     </div>

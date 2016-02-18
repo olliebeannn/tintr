@@ -1,9 +1,8 @@
 /*All Presentational CSS*/
 
+/*Font styling*/
 body {
-  background-color: #111;
-  /*background-image: url("images/bg-short.svg");*/
-  color: white;
+  color: #4a4a4a;
   font-family: 'Open Sans';
   font-size: 24px;
   font-weight: 300;
@@ -17,33 +16,53 @@ h1 {
   line-height: 1.3333333em;
 }
 
+h2 {
+  font-size: 2em;
+}
+
 h3 {
   font-size: 1em;
 }
 
-.title {
+#title {
   margin-top: 2em;
 }
 
 .list-input-label {
-  font-size: 0.875em;
+  font-size: 0.75em;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
   text-transform: uppercase;
 }
 
+.errorMessage {
+  color: #FF798A;
+  font-size: 0.583333333em;
+}
+
+#instructions {
+  margin-top: 1.333333em;
+  margin-bottom: 0.8333333em;
+}
+
+#game-results-intro {
+  margin-top: 5em;
+}
+
+
+/*Core CSS Styles*/
+
+.hidden {
+  display: none;
+}
+
+
+
 .color-box {
   display: inline-block;
+  margin: 1em;
   height: 100px;
-  width: 20%;
-}
-
-.color-box-correct {
-  border: 5px solid #FFF;
-}
-
-.color-box-incorrect {
-  border: 5px solid #FF798A;
+  width: 25%;
 }
 
 .color-box-container {
@@ -52,19 +71,6 @@ h3 {
 
 .color-group-container {
   margin-bottom: 0.5em;
-}
-
-.errorMessage {
-  color: #FF798A;
-  font-size: 0.583333333em;
-}
-
-.hidden {
-  display: none;
-}
-
-#question-indicators {
-
 }
 
 .question-indicator{
@@ -85,20 +91,20 @@ h3 {
   border: none;
 }
 
-.light-font {
+/*.light-font {
   color: rgba(255,255,255,0.6);
-}
+}*/
 
 input[type="button"] {
   background: none;
   display: block;
   letter-spacing: 2px;
-  margin: 2.66666666667em auto 0 auto;
+  margin: 1em auto 0 auto;
 }
 
 input[type="text"] {
-  background-color: rgba(255,255,255,0.2);
-  border: none;
+  background-color: #EBEBE6;
+  border: 1px solid #DDD;
   border-radius: 2px;
   height: 40px;
   text-align: center;
@@ -113,14 +119,5 @@ input[type="text"] {
 }
 
 #question-counter {
-  margin-top: 5em;
-}
-
-#instructions {
-  margin-top: 1.333333em;
-  margin-bottom: 0.8333333em;
-}
-
-#game-results-intro {
   margin-top: 5em;
 }

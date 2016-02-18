@@ -41,8 +41,8 @@ $(document).ready(function() {
     $('#startgame-container').addClass('hidden');
     $('#game-container').removeClass('hidden');
 
-    if(game.gameType == 'lightness') $('#instructions').text("Choose the lightest color:");
-    if(game.gameType == 'saturation') $('#instructions').text("Choose the most saturated color:");
+    if(game.gameType == 'lightness') $('#instructions').text("Choose the lightest color.");
+    if(game.gameType == 'saturation') $('#instructions').text("Choose the most saturated color.");
 
     //Create number of color boxes based on input, set question label
     createBoxes(game.numColors);
@@ -106,6 +106,7 @@ function createBoxes(numColors) {
 
   for(var j = 0; j < boxes.length; j++) {
     $(boxes[j]).css('height', boxWidth + 'px');
+    $(boxes[j]).css('border-radius', boxWidth/2 + 'px');
   }
 }
 
@@ -153,7 +154,7 @@ function Game(numQuestions, numColors, gameType) {
     this.currentQuestion = question;
     setBackgroundColors(this.currentQuestion.colors);
 
-    this.setQuestionCounterLabel();
+    // this.setQuestionCounterLabel();
   }
 
   this.displayResults = function() {
@@ -171,10 +172,10 @@ function Game(numQuestions, numColors, gameType) {
 
   }
 
-  this.setQuestionCounterLabel = function() {
-    var labelText = "Question " + (this.questionsAnswered+1) + " / " + this.numQuestions;
-    $('#question-counter').text(labelText);
-  }
+  // this.setQuestionCounterLabel = function() {
+  //   var labelText = "Question " + (this.questionsAnswered+1) + " / " + this.numQuestions;
+  //   $('#question-counter').text(labelText);
+  // }
 }
 
 function setQuestionCounterLabel(game) {
