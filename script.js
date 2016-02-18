@@ -226,6 +226,7 @@ function resetGame() {
   $('.color-box-container').empty();
   $('#correct-answer-list').empty();
   $('#incorrect-answer-list').empty();
+  $('#question-indicators').empty();
 
   $('#endgame-container').addClass('hidden');
   $('#startgame-container').removeClass('hidden');

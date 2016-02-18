@@ -96,9 +96,14 @@ h3 {
 }*/
 
 input[type="button"] {
-  background: none;
+  background: linear-gradient(to right, #10C39F , #FFDA6C);
+  border-radius: 6px;
+  border: none;
+  color: white;
   display: block;
+  font-size: 1em;
   letter-spacing: 2px;
+  padding: 0.5em 1.5em;
   margin: 1em auto 0 auto;
 }
 
@@ -109,13 +114,6 @@ input[type="text"] {
   height: 40px;
   text-align: center;
   width: 60px;
-}
-
-.btn-large {
-  border: 2px solid #EEE;
-  border-radius: 6px;
-  font-size: 1em;
-  padding: 0.5em 1.5em;
 }
 
 #question-counter {
