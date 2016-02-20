@@ -35,12 +35,6 @@ $(document).ready(function() {
   $('#gameType-lightness, #gameType-saturation').click(function() {
     gameType = $(this).attr('data-mode');
     $('#section-gameType').addClass('hidden');
-    $('#button-startGame').removeClass('hidden');
-  })
-
-  $('#button-startGame').click(function() {
-    // var numQuestions = $('#input-numQuestions').val();
-    // var numColors = $('#input-numColors').val();
 
     //Create a game with a number of questions, right and wrong answers
     game = new Game(numQuestions, numColors, gameType);
@@ -100,19 +94,21 @@ $(document).ready(function() {
   $('#btn-newGame').click(resetGame);
 })
 
-function createBoxes(numColors) {
-  for(var i = 0; i < numColors; i++) {
-    var newBox = $('<div></div>').addClass('color-box').attr('id', i.toString());
-    $('.color-box-container').append(newBox);
-  }
-
-  //Set box height equal to box width
-  var boxes = $('.color-box');
-  var boxWidth = $(boxes[0]).width();
-  console.log(boxWidth);
-
-  for(var j = 0; j < boxes.length; j++) {
-    $(boxes[j]).css('height', boxWidth + 'px');
+function checkInput(field, rangeLow, rangeHigh, button, error) {
+  // console.log("Hi!");
+  var val = parseInt(field.val());
+  // console.log(val);
+  if(isNaN(val)) {
+    button.addClass('hidden');
+    error.removeClass('hidden');
+    error.text('Enter a number, brah.');
+  } else if(val < rangeLow || val > rangeHigh) {
+    button.addClass('hidden');
+    error.removeClass('hidden');
+    error.text('Enter a number between ' + rangeLow + ' and ' + rangeHigh + ', brah.');
+  } else {
+    button.removeClass('hidden');
+    error.text('');
   }
 }
 
@@ -159,8 +155,6 @@ function Game(numQuestions, numColors, gameType) {
 
     this.currentQuestion = question;
     setBackgroundColors(this.currentQuestion.colors);
-
-    // this.setQuestionCounterLabel();
   }
 
   this.displayResults = function() {
@@ -168,63 +162,18 @@ function Game(numQuestions, numColors, gameType) {
     $('#game-container').addClass('hidden');
     $('#endgame-container').removeClass('hidden');
 
-    //Build endgame results and show them
+    //Show user results
     var scorePercentage = Math.floor((this.numberCorrect / this.numQuestions) * 100);
     $('#game-results').text(scorePercentage + "% (" + this.numberCorrect + '/' + this.numQuestions + ')');
 
-    makeAnswersList(this.correctlyAnswered, $('#correct-answer-list'), true);
-    makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'), false);
-
-
+    // makeAnswersList(this.correctlyAnswered, $('#correct-answer-list'), true);
+    // makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'), false);
   }
 
   // this.setQuestionCounterLabel = function() {
   //   var labelText = "Question " + (this.questionsAnswered+1) + " / " + this.numQuestions;
   //   $('#question-counter').text(labelText);
   // }
-}
-
-function setQuestionCounterLabel(game) {
-  var labelText = "Question " + (game.questionsAnswered+1) + " / " + game.numQuestions;
-  $('#question-counter').text(labelText);
-}
-
-function setBackgroundColors(colors) {
-  var boxes = $('.color-box');
-  for(var i = 0; i < boxes.length; i++) {
-    $(boxes[i]).css('backgroundColor', colors[i]);
-  }
-}
-
-function makeAnswersList(answers, list, left) {
-  for(var i = 0; i < answers.length; i++) {
-    var colorGroup = answers[i];
-    var colorGroupContainer = $("<div></div>").appendTo(list);
-    for(var j = 0; j < colorGroup.length; j++) {
-      var colorBox = $("<div></div>").appendTo(colorGroupContainer);
-      colorBox.addClass('color-box');
-      colorBox.css('backgroundColor', colorGroup[j]);
-      colorBox.css('height', colorBox.width() + 20);
-    }
-  }
-}
-
-function checkInput(field, rangeLow, rangeHigh, button, error) {
-  // console.log("Hi!");
-  var val = parseInt(field.val());
-  // console.log(val);
-  if(isNaN(val)) {
-    button.addClass('hidden');
-    error.removeClass('hidden');
-    error.text('Enter a number, brah.');
-  } else if(val < rangeLow || val > rangeHigh) {
-    button.addClass('hidden');
-    error.removeClass('hidden');
-    error.text('Enter a number between ' + rangeLow + ' and ' + rangeHigh + ', brah.');
-  } else {
-    button.removeClass('hidden');
-    error.text('');
-  }
 }
 
 function resetGame() {
@@ -239,3 +188,39 @@ function resetGame() {
   $('#section-numQuestions').removeClass('hidden');
   $('#button-startGame').addClass('hidden');
 }
+
+function createBoxes(numColors) {
+  for(var i = 0; i < numColors; i++) {
+    var newBox = $('<div></div>').addClass('color-box').attr('id', i.toString());
+    $('.color-box-container').append(newBox);
+  }
+
+  //Set box height equal to box width
+  var boxes = $('.color-box');
+  var boxWidth = $(boxes[0]).width();
+  console.log(boxWidth);
+
+  for(var j = 0; j < boxes.length; j++) {
+    $(boxes[j]).css('height', boxWidth + 'px');
+  }
+}
+
+function setBackgroundColors(colors) {
+  var boxes = $('.color-box');
+  for(var i = 0; i < boxes.length; i++) {
+    $(boxes[i]).css('backgroundColor', colors[i]);
+  }
+}
+
+// function makeAnswersList(answers, list, left) {
+//   for(var i = 0; i < answers.length; i++) {
+//     var colorGroup = answers[i];
+//     var colorGroupContainer = $("<div></div>").appendTo(list);
+//     for(var j = 0; j < colorGroup.length; j++) {
+//       var colorBox = $("<div></div>").appendTo(colorGroupContainer);
+//       colorBox.addClass('color-box');
+//       colorBox.css('backgroundColor', colorGroup[j]);
+//       colorBox.css('height', colorBox.width() + 20);
+//     }
+//   }
+// }
