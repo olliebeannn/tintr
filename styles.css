@@ -3,36 +3,35 @@
 /*Font styling*/
 body {
   color: #4a4a4a;
-  font-family: 'Open Sans';
+  font-family: 'Raleway';
   font-size: 24px;
-  font-weight: 300;
-  line-height: 1.3333333em;
+  font-weight: 400;
+  line-height: 1.5em;
   text-align: center;
 }
 
 h1 {
   font-size: 3em;
-  font-weight: 600;
-  line-height: 1.3333333em;
+  line-height: 1.25em;
 }
 
 h2 {
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1em;
+  font-size: 1.5em;
+  line-height: 1.25em;
 }
 
 #title {
   margin-top: 2em;
 }
 
+#subtitle {
+  margin: 0 auto;
+  width: 80%;
+}
+
 .list-input-label {
-  font-size: 0.75em;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
-  text-transform: uppercase;
 }
 
 .errorMessage {
@@ -49,6 +48,28 @@ h3 {
   margin-top: 5em;
 }
 
+input[type="button"] {
+  background: linear-gradient(to right, #10C39F , #FFDA6C);
+  border-radius: 6px;
+  border: none;
+  color: white;
+  display: block;
+  font-size: 1em;
+  letter-spacing: 2px;
+  padding: 0.5em 1.5em;
+  margin: 1em auto 0 auto;
+}
+
+input[type="text"] {
+  background-color: #EBEBE6;
+  border: 1px solid #DDD;
+  border-radius: 2px;
+  font-size: 2em;
+  height: 1.5em;
+  text-align: center;
+  width: 120px;
+}
+
 
 /*Core CSS Styles*/
 
@@ -61,8 +82,9 @@ h3 {
 .color-box {
   display: inline-block;
   margin: 1em;
-  height: 100px;
   width: 25%;
+  /*height: auto;*/
+  border-radius: 50%;
 }
 
 .color-box-container {
@@ -89,33 +111,4 @@ h3 {
 .question-indicator-incorrect {
   background-color: #FF0000;
   border: none;
-}
-
-/*.light-font {
-  color: rgba(255,255,255,0.6);
-}*/
-
-input[type="button"] {
-  background: linear-gradient(to right, #10C39F , #FFDA6C);
-  border-radius: 6px;
-  border: none;
-  color: white;
-  display: block;
-  font-size: 1em;
-  letter-spacing: 2px;
-  padding: 0.5em 1.5em;
-  margin: 1em auto 0 auto;
-}
-
-input[type="text"] {
-  background-color: #EBEBE6;
-  border: 1px solid #DDD;
-  border-radius: 2px;
-  height: 40px;
-  text-align: center;
-  width: 60px;
-}
-
-#question-counter {
-  margin-top: 5em;
 }

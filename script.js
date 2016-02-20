@@ -2,6 +2,13 @@
 $(document).ready(function() {
   var game, numQuestions, numColors, gameType;
 
+  $('#btn-play').click(function() {
+    $('#title').addClass('hidden');
+    $('#subtitle').addClass('hidden');
+    $('#btn-play').addClass('hidden');
+    $('#section-numQuestions').removeClass('hidden');
+  })
+
   //Get number questions
   $('#input-field-numQuestions').keyup(function() {
     checkInput($('#input-field-numQuestions'), 1, 10, $('#input-button-numQuestions'), $('#input-error-numQuestions'));
@@ -102,11 +109,10 @@ function createBoxes(numColors) {
   //Set box height equal to box width
   var boxes = $('.color-box');
   var boxWidth = $(boxes[0]).width();
-  // console.log(boxWidth);
+  console.log(boxWidth);
 
   for(var j = 0; j < boxes.length; j++) {
     $(boxes[j]).css('height', boxWidth + 'px');
-    $(boxes[j]).css('border-radius', boxWidth/2 + 'px');
   }
 }
 
