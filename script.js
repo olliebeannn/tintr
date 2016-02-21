@@ -67,7 +67,8 @@ $(document).ready(function() {
         var indicator = $('.question-indicator')[game.questionsAnswered];
         if($(this).attr('id') == game.currentQuestion.correctAnswerIndex) {
           // console.log("That's right!");
-          $(indicator).css('background-color', $(this).css('background-color')).css('border', 'none');
+          // $(indicator).css('background-color', $(this).css('background-color')).css('border', 'none');
+          $(indicator).addClass('question-indicator-correct');
           $($(indicator).children()[0]).removeClass('hidden');
           game.numberCorrect++;
           // game.correctlyAnswered.push(game.currentQuestion.colors);

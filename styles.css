@@ -113,7 +113,7 @@ input[type="text"] {
   width: 40px;
 }
 
-.question-indicator-incorrect {
-  background-color: #FF0000;
+.question-indicator-correct {
+  background-color: #80ECB4;
   border: none;
 }
