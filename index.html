@@ -19,6 +19,7 @@
         <!-- Inputs for number of questions -->
         <div id="section-numQuestions" class='hidden'>
           <h2 id='input-label-numQuestions' class="list-input-label">How many rounds do you want to play?</h2>
+          <h3>(Pick a number between 1 and 20.)</h3>
           <input type="text" id="input-field-numQuestions" value="">
           <p class='hidden errorMessage' id='input-error-numQuestions'></p>
           <input type='button' id='input-button-numQuestions' class='hidden btn-large' value='->'>
@@ -26,6 +27,7 @@
         <!--Inputs for number of colours in game-->
         <div id="section-numColors" class='hidden'>
           <h2 id='input-label-numColors' class="list-input-label">How many colours do you want to compare each round?</h2>
+          <h3>(Pick a number between 2 and 4.)</h3>
           <input type="text" id="input-field-numColors" value="">
           <p class='hidden errorMessage' id='input-error-numColors'></p>
           <input type='button' id='input-button-numColors' class='hidden btn-large' value='->'>
@@ -44,8 +46,8 @@
     <div id="game-container" class="hidden">
       <!-- <h3 id="question-counter" class='light-font'>Question</h3> -->
       <h2 id="instructions"></h3>
-      <div class="swatch-container"></div>
-      <div id="question-indicators"></div>
+      <div id="swatch-container"></div>
+      <div id="question-indicator-container"></div>
     </div>
     <!-- Endgame container -->
     <div id="endgame-container" class="hidden">

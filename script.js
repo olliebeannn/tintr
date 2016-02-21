@@ -11,7 +11,7 @@ $(document).ready(function() {
 
   //Get number questions
   $('#input-field-numQuestions').keyup(function() {
-    checkInput($('#input-field-numQuestions'), 1, 10, $('#input-button-numQuestions'), $('#input-error-numQuestions'));
+    checkInput($('#input-field-numQuestions'), 1, 20, $('#input-button-numQuestions'), $('#input-error-numQuestions'));
   });
   $('#input-button-numQuestions').click(function() {
     numQuestions = $('#input-field-numQuestions').val();
@@ -51,7 +51,7 @@ $(document).ready(function() {
     //Create game indicators
     for(var i = 0; i < game.numQuestions; i++) {
       var indicator = $('<div></div>').addClass("question-indicator");
-      $('#question-indicators').append(indicator);
+      $('#question-indicator-container').append(indicator);
     }
 
     //Generate next question
@@ -182,10 +182,10 @@ function Game(numQuestions, numColors, gameType) {
 
 function resetGame() {
   //Remove color swatch containers from the actual game and results
-  $('.swatch-container').empty();
+  $('#swatch-container').empty();
   $('#correct-answer-list').empty();
   $('#incorrect-answer-list').empty();
-  $('#question-indicators').empty();
+  $('#question-indicator-container').empty();
 
   $('#endgame-container').addClass('hidden');
   $('#startgame-container').removeClass('hidden');
@@ -196,7 +196,7 @@ function resetGame() {
 function createSwatches(numColors) {
   for(var i = 0; i < numColors; i++) {
     var newSwatch = $('<div></div>').addClass('swatch').attr('id', i.toString());
-    $('.swatch-container').append(newSwatch);
+    $('#swatch-container').append(newSwatch);
   }
   resizeSwatches();
 }
