@@ -45,8 +45,8 @@ $(document).ready(function() {
     if(game.gameType == 'lightness') $('#instructions').text("Choose the lightest color.");
     if(game.gameType == 'saturation') $('#instructions').text("Choose the most saturated color.");
 
-    //Create number of color boxes based on input, set question label
-    createBoxes(game.numColors);
+    //Create number of color swatches based on input, set question label
+    createSwatches(game.numColors);
 
     //Create game indicators
     for(var i = 0; i < game.numQuestions; i++) {
@@ -58,13 +58,13 @@ $(document).ready(function() {
     game.generateQuestion();
     console.log(game.currentQuestion);
 
-    //Attach click handler to each box
-    var boxes = $('.color-box');
-    for(var i = 0; i < boxes.length; i++) {
-      $(boxes[i]).click(function() {
+    //Attach click handler to each swatch
+    var swatches = $('.swatch');
+    for(var i = 0; i < swatches.length; i++) {
+      $(swatches[i]).click(function() {
         if($(this).attr('id') == game.currentQuestion.correctAnswerIndex) {
           console.log("That's right!");
-          // $(this).addClass('color-box-correct');
+          // $(this).addClass('swatch-correct');
           // console.log($('.question-indicator')[game.questionsAnswered]);
           $($('.question-indicator')[game.questionsAnswered]).addClass('question-indicator-correct');
           game.numberCorrect++;
@@ -177,8 +177,8 @@ function Game(numQuestions, numColors, gameType) {
 }
 
 function resetGame() {
-  //Remove color box containers from the actual game and results
-  $('.color-box-container').empty();
+  //Remove color swatch containers from the actual game and results
+  $('.swatch-container').empty();
   $('#correct-answer-list').empty();
   $('#incorrect-answer-list').empty();
   $('#question-indicators').empty();
@@ -189,26 +189,26 @@ function resetGame() {
   $('#button-startGame').addClass('hidden');
 }
 
-function createBoxes(numColors) {
+function createSwatches(numColors) {
   for(var i = 0; i < numColors; i++) {
-    var newBox = $('<div></div>').addClass('color-box').attr('id', i.toString());
-    $('.color-box-container').append(newBox);
+    var newSwatch = $('<div></div>').addClass('swatch').attr('id', i.toString());
+    $('.swatch-container').append(newSwatch);
   }
 
-  //Set box height equal to box width
-  var boxes = $('.color-box');
-  var boxWidth = $(boxes[0]).width();
-  console.log(boxWidth);
+  //Set swatch height equal to swatch width
+  var swatches = $('.swatch');
+  var swatchWidth = $(swatches[0]).width();
+  console.log(swatchWidth);
 
-  for(var j = 0; j < boxes.length; j++) {
-    $(boxes[j]).css('height', boxWidth + 'px');
+  for(var j = 0; j < swatches.length; j++) {
+    $(swatches[j]).css('height', swatchWidth + 'px');
   }
 }
 
 function setBackgroundColors(colors) {
-  var boxes = $('.color-box');
-  for(var i = 0; i < boxes.length; i++) {
-    $(boxes[i]).css('backgroundColor', colors[i]);
+  var swatches = $('.swatch');
+  for(var i = 0; i < swatches.length; i++) {
+    $(swatches[i]).css('backgroundColor', colors[i]);
   }
 }
 
@@ -217,10 +217,10 @@ function setBackgroundColors(colors) {
 //     var colorGroup = answers[i];
 //     var colorGroupContainer = $("<div></div>").appendTo(list);
 //     for(var j = 0; j < colorGroup.length; j++) {
-//       var colorBox = $("<div></div>").appendTo(colorGroupContainer);
-//       colorBox.addClass('color-box');
-//       colorBox.css('backgroundColor', colorGroup[j]);
-//       colorBox.css('height', colorBox.width() + 20);
+//       var colorSwatch = $("<div></div>").appendTo(colorGroupContainer);
+//       colorSwatch.addClass('swatch');
+//       colorSwatch.css('backgroundColor', colorGroup[j]);
+//       colorSwatch.css('height', colorSwatch.width() + 20);
 //     }
 //   }
 // }
