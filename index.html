@@ -2,7 +2,7 @@
   <head>
     <title>Tintr</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="bootstrap.css" charset="utf-8">
+    <!-- <link rel="stylesheet" href="bootstrap.css" charset="utf-8"> -->
     <link rel="stylesheet" href="reset.css" charset="utf-8">
     <link rel="stylesheet" href="styles.css"charset="utf-8">
     <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'> -->
@@ -15,14 +15,14 @@
       <h1 id="title">Tintr</h1>
       <h3 id="subtitle">Test your colour skills. Can you pick out the lightest or most saturated colour?</h3>
       <form id="user-input" action="">
-        <input type="button" id="btn-play" class='btn-large' value="PLAY">
+        <input type="button" id="btn-play" value="PLAY">
         <!-- Inputs for number of questions -->
         <div id="section-numQuestions" class='hidden'>
           <h2 id='input-label-numQuestions' class="list-input-label">How many rounds do you want to play?</h2>
           <h3>(Pick a number between 1 and 20.)</h3>
           <input type="text" id="input-field-numQuestions" value="">
           <p class='hidden errorMessage' id='input-error-numQuestions'></p>
-          <input type='button' id='input-button-numQuestions' class='hidden btn-large' value='->'>
+          <input type='button' id='input-button-numQuestions' class='hidden' value='->'>
         </div>
         <!--Inputs for number of colours in game-->
         <div id="section-numColors" class='hidden'>
@@ -30,16 +30,16 @@
           <h3>(Pick a number between 2 and 4.)</h3>
           <input type="text" id="input-field-numColors" value="">
           <p class='hidden errorMessage' id='input-error-numColors'></p>
-          <input type='button' id='input-button-numColors' class='hidden btn-large' value='->'>
+          <input type='button' id='input-button-numColors' class='hidden' value='->'>
         </div>
         <!-- Inputs for game type -->
         <div id="section-gameType" class='hidden'>
           <h2 id='input-label-gameType' class="list-input-label">How do you want to test your colour perception - lightness or saturation?</h2>
-          <input type="button" class='btn-large' id='gameType-lightness' data-mode='lightness' value="LIGHTNESS">
-          <input type="button" class='btn-large' id='gameType-saturation' data-mode='saturation' value="SATURATION">
+          <input type="button" id='gameType-lightness' data-mode='lightness' value="LIGHTNESS">
+          <input type="button" id='gameType-saturation' data-mode='saturation' value="SATURATION">
         </div>
         <!-- Start game button -->
-        <input type="button" id="button-startGame" class='btn-large hidden' value="START">
+        <input type="button" id="button-startGame" class='hidden' value="START">
       </form>
     </div>
     <!-- Game container -->

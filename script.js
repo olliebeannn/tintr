@@ -51,6 +51,8 @@ $(document).ready(function() {
     //Create game indicators
     for(var i = 0; i < game.numQuestions; i++) {
       var indicator = $('<div></div>').addClass("question-indicator");
+      indicator.append($("<img src='images/icon-right-small.svg' class='hidden icon'>"))
+      indicator.append($("<img src='images/icon-wrong-small.svg' class='hidden icon'>"))
       $('#question-indicator-container').append(indicator);
     }
 
@@ -62,18 +64,18 @@ $(document).ready(function() {
     var swatches = $('.swatch');
     for(var i = 0; i < swatches.length; i++) {
       $(swatches[i]).click(function() {
+        var indicator = $('.question-indicator')[game.questionsAnswered];
         if($(this).attr('id') == game.currentQuestion.correctAnswerIndex) {
-          console.log("That's right!");
-          // $(this).addClass('swatch-correct');
-          // console.log($('.question-indicator')[game.questionsAnswered]);
-          $($('.question-indicator')[game.questionsAnswered]).addClass('question-indicator-correct');
+          // console.log("That's right!");
+          $(indicator).css('background-color', $(this).css('background-color')).css('border', 'none');
+          $($(indicator).children()[0]).removeClass('hidden');
           game.numberCorrect++;
-          game.correctlyAnswered.push(game.currentQuestion.colors);
+          // game.correctlyAnswered.push(game.currentQuestion.colors);
         }
         else {
-          console.log("Try again...");
-          $($('.question-indicator')[game.questionsAnswered]).addClass('question-indicator-incorrect');
-          game.incorrectlyAnswered.push(game.currentQuestion.colors);
+          // console.log("Try again...");
+          $($(indicator).children()[1]).removeClass('hidden');
+          // game.incorrectlyAnswered.push(game.currentQuestion.colors);
         }
         //Increment # of questions asked
         game.questionsAnswered++;
@@ -81,7 +83,7 @@ $(document).ready(function() {
         //Create the next question if there are still more to go
         if(game.questionsAnswered < game.numQuestions) {
           game.generateQuestion();
-          console.log(game.currentQuestion);
+          // console.log(game.currentQuestion);
         }
         //Or show results if all questions have been asked
         else {
@@ -99,9 +101,7 @@ $(window).resize(function() {
 });
 
 function checkInput(field, rangeLow, rangeHigh, button, error) {
-  // console.log("Hi!");
   var val = parseInt(field.val());
-  // console.log(val);
   if(isNaN(val)) {
     button.addClass('hidden');
     error.removeClass('hidden');
@@ -138,14 +138,14 @@ function Game(numQuestions, numColors, gameType) {
       var l = Math.random()*100;
 
       if(this.gameType == 'lightness') {
-        console.log('lightness mode question');
+        // console.log('lightness mode question');
         if(l > highestValue) {
           correctAnswerIndex = i;
           highestValue = l;
         }
       }
       else if(this.gameType == 'saturation') {
-        console.log('saturation mode question');
+        // console.log('saturation mode question');
         if(s > highestValue) {
           correctAnswerIndex = i;
           highestValue = s;
@@ -169,11 +169,9 @@ function Game(numQuestions, numColors, gameType) {
     //Show user results
     var scorePercentage = Math.floor((this.numberCorrect / this.numQuestions) * 100);
     $('#game-results').text(scorePercentage + "% (" + this.numberCorrect + '/' + this.numQuestions + ')');
-
     // makeAnswersList(this.correctlyAnswered, $('#correct-answer-list'), true);
     // makeAnswersList(this.incorrectlyAnswered, $('#incorrect-answer-list'), false);
   }
-
   // this.setQuestionCounterLabel = function() {
   //   var labelText = "Question " + (this.questionsAnswered+1) + " / " + this.numQuestions;
   //   $('#question-counter').text(labelText);
@@ -205,7 +203,7 @@ function resizeSwatches() {
   //Set swatch height equal to swatch width
   var swatches = $('.swatch');
   var swatchWidth = $(window).width() * 0.4;
-  console.log(swatchWidth);
+  // console.log(swatchWidth);
 
   for(var j = 0; j < swatches.length; j++) {
     $(swatches[j]).css('width', swatchWidth + 'px')

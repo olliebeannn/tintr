@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-wrong</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-Master" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="assets" sketch:type="MSArtboardGroup" transform="translate(-41.000000, -41.000000)" fill="#CCCCCC">
+            <path d="M48.3786797,50.5 L41.9393398,44.0606602 C41.3535534,43.4748737 41.3535534,42.5251263 41.9393398,41.9393398 C42.5251263,41.3535534 43.4748737,41.3535534 44.0606602,41.9393398 L50.5,48.3786797 L56.9393398,41.9393398 C57.5251263,41.3535534 58.4748737,41.3535534 59.0606602,41.9393398 C59.6464466,42.5251263 59.6464466,43.4748737 59.0606602,44.0606602 L52.6213203,50.5 L59.0606602,56.9393398 C59.6464466,57.5251263 59.6464466,58.4748737 59.0606602,59.0606602 C58.4748737,59.6464466 57.5251263,59.6464466 56.9393398,59.0606602 L50.5,52.6213203 L44.0606602,59.0606602 C43.4748737,59.6464466 42.5251263,59.6464466 41.9393398,59.0606602 C41.3535534,58.4748737 41.3535534,57.5251263 41.9393398,56.9393398 L48.3786797,50.5 Z" id="icon-wrong" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
