@@ -94,6 +94,10 @@ $(document).ready(function() {
   $('#btn-newGame').click(resetGame);
 })
 
+$(window).resize(function() {
+    resizeSwatches();
+});
+
 function checkInput(field, rangeLow, rangeHigh, button, error) {
   // console.log("Hi!");
   var val = parseInt(field.val());
@@ -194,13 +198,17 @@ function createSwatches(numColors) {
     var newSwatch = $('<div></div>').addClass('swatch').attr('id', i.toString());
     $('.swatch-container').append(newSwatch);
   }
+  resizeSwatches();
+}
 
+function resizeSwatches() {
   //Set swatch height equal to swatch width
   var swatches = $('.swatch');
-  var swatchWidth = $(swatches[0]).width();
+  var swatchWidth = $(window).width() * 0.4;
   console.log(swatchWidth);
 
   for(var j = 0; j < swatches.length; j++) {
+    $(swatches[j]).css('width', swatchWidth + 'px')
     $(swatches[j]).css('height', swatchWidth + 'px');
   }
 }
