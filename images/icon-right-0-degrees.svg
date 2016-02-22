@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="67px" viewBox="0 0 90 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-right-0-degrees</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-Master" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="assets" sketch:type="MSArtboardGroup" transform="translate(-35.000000, -315.000000)" fill="#FFFFFF">
+            <path d="M60.4644661,380.035534 C62.4170876,381.988155 65.5829124,381.988155 67.5355339,380.035534 L123.535534,324.035534 C125.488155,322.082912 125.488155,318.917088 123.535534,316.964466 C121.582912,315.011845 118.417088,315.011845 116.464466,316.964466 L64,369.5 L43.5355339,348.964466 C41.5829124,347.011845 38.4170876,347.011845 36.4644661,348.964466 C34.5118446,350.917088 34.5118446,354.082912 36.4644661,356.035534 L60.4644661,380.035534 Z" id="icon-right-0-degrees" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

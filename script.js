@@ -51,8 +51,8 @@ $(document).ready(function() {
     //Create game indicators
     for(var i = 0; i < game.numQuestions; i++) {
       var indicator = $('<div></div>').addClass("question-indicator");
-      indicator.append($("<img src='images/icon-right-small.svg' class='hidden icon'>"))
-      indicator.append($("<img src='images/icon-wrong-small.svg' class='hidden icon'>"))
+      indicator.append($("<img src='images/icon-right-small.svg' class='icon'>"), $("<img src='images/icon-wrong-small.svg' class='icon'>"))
+      indicator.children().hide();
       $('#question-indicator-container').append(indicator);
     }
 
@@ -68,14 +68,15 @@ $(document).ready(function() {
         if($(this).attr('id') == game.currentQuestion.correctAnswerIndex) {
           // console.log("That's right!");
           // $(indicator).css('background-color', $(this).css('background-color')).css('border', 'none');
+          $($(this).children()[0]).fadeIn(200).delay(2000).fadeOut(200);
           $(indicator).addClass('question-indicator-correct');
-          $($(indicator).children()[0]).removeClass('hidden');
+          $($(indicator).children()[0]).fadeIn(200);
           game.numberCorrect++;
           // game.correctlyAnswered.push(game.currentQuestion.colors);
         }
         else {
           // console.log("Try again...");
-          $($(indicator).children()[1]).removeClass('hidden');
+          $($(indicator).children()[1]).fadeIn(200);
           // game.incorrectlyAnswered.push(game.currentQuestion.colors);
         }
         //Increment # of questions asked
@@ -195,8 +196,8 @@ function resetGame() {
 function createSwatches(numColors) {
   for(var i = 0; i < numColors; i++) {
     var newSwatch = $('<div></div>').addClass('swatch').attr('id', i.toString());
-    newSwatch.append($("<img src='images/icon-right.svg' class='hidden icon'>"));
-    newSwatch.append($("<img src='images/icon-wrong.svg' class='hidden icon'>"));
+    newSwatch.append($("<img src='images/icon-right-0-degrees.svg' class='icon'>"), $("<img src='images/icon-wrong.svg' class='icon'>"));
+    newSwatch.children().hide();
     $('#swatch-container').append(newSwatch);
   }
   resizeSwatches();
