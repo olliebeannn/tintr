@@ -195,6 +195,8 @@ function resetGame() {
 function createSwatches(numColors) {
   for(var i = 0; i < numColors; i++) {
     var newSwatch = $('<div></div>').addClass('swatch').attr('id', i.toString());
+    newSwatch.append($("<img src='images/icon-right.svg' class='hidden icon'>"));
+    newSwatch.append($("<img src='images/icon-wrong.svg' class='hidden icon'>"));
     $('#swatch-container').append(newSwatch);
   }
   resizeSwatches();
