@@ -3,9 +3,7 @@ $(document).ready(function() {
   var game, numQuestions, numColors, gameType;
 
   $('#btn-play').click(function() {
-    $('#title').addClass('hidden');
-    $('#subtitle').addClass('hidden');
-    $('#btn-play').addClass('hidden');
+    $('#intro-screen').addClass('hidden');
     $('#section-numQuestions').removeClass('hidden');
   })
 
@@ -75,7 +73,7 @@ $(document).ready(function() {
           var checkmark = $($(this).children()[0]);
           checkmark.fadeIn(200).delay(1000).fadeOut(500, function() {
               $(indicator).addClass('question-indicator-correct');
-              $($(indicator).children()[0]).fadeIn(200);
+              $($(indicator).children()[0]).fadeIn(400);
               game.nextQuestion();
           });
 
@@ -84,7 +82,7 @@ $(document).ready(function() {
         else {
           var cross = $($(this).children()[1]);
           cross.fadeIn(200).delay(1000).fadeOut(500, function() {
-              $($(indicator).children()[1]).fadeIn(200);
+              $($(indicator).children()[1]).fadeIn(400);
               game.nextQuestion();
           });
           // console.log("Try again...");
