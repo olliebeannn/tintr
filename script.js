@@ -64,33 +64,44 @@ $(document).ready(function() {
     var swatches = $('.swatch');
     for(var i = 0; i < swatches.length; i++) {
       $(swatches[i]).click(function() {
+        //Increment # of questions asked
         var indicator = $('.question-indicator')[game.questionsAnswered];
+        game.questionsAnswered++;
+
+        //Animate question indicators and swatches
         if($(this).attr('id') == game.currentQuestion.correctAnswerIndex) {
           // console.log("That's right!");
-          // $(indicator).css('background-color', $(this).css('background-color')).css('border', 'none');
-          $($(this).children()[0]).fadeIn(200).delay(2000).fadeOut(200);
-          $(indicator).addClass('question-indicator-correct');
-          $($(indicator).children()[0]).fadeIn(200);
           game.numberCorrect++;
+          var checkmark = $($(this).children()[0]);
+          checkmark.fadeIn(200).delay(1000).fadeOut(500, function() {
+              $(indicator).addClass('question-indicator-correct');
+              $($(indicator).children()[0]).fadeIn(200);
+              game.nextQuestion();
+          });
+
           // game.correctlyAnswered.push(game.currentQuestion.colors);
         }
         else {
+          var cross = $($(this).children()[1]);
+          cross.fadeIn(200).delay(1000).fadeOut(500, function() {
+              $($(indicator).children()[1]).fadeIn(200);
+              game.nextQuestion();
+          });
           // console.log("Try again...");
-          $($(indicator).children()[1]).fadeIn(200);
           // game.incorrectlyAnswered.push(game.currentQuestion.colors);
         }
-        //Increment # of questions asked
-        game.questionsAnswered++;
 
-        //Create the next question if there are still more to go
-        if(game.questionsAnswered < game.numQuestions) {
-          game.generateQuestion();
-          // console.log(game.currentQuestion);
-        }
-        //Or show results if all questions have been asked
-        else {
-          game.displayResults();
-        }
+        // game.nextQuestion();
+
+        // //Create the next question if there are still more to go
+        // if(game.questionsAnswered < game.numQuestions) {
+        //   game.generateQuestion();
+        //   // console.log(game.currentQuestion);
+        // }
+        // //Or show results if all questions have been asked
+        // else {
+        //   game.displayResults();
+        // }
       })
     }
   });
@@ -178,6 +189,19 @@ function Game(numQuestions, numColors, gameType) {
   //   var labelText = "Question " + (this.questionsAnswered+1) + " / " + this.numQuestions;
   //   $('#question-counter').text(labelText);
   // }
+  this.nextQuestion = function() {
+    //Create the next question if there are still more to go
+    if(this.questionsAnswered < this.numQuestions) {
+      this.generateQuestion();
+    }
+    //Or show results if all questions have been asked
+    else {
+      var game = this;
+      setTimeout(function() {
+        game.displayResults();
+      }, 2000);
+    }
+  }
 }
 
 function resetGame() {
