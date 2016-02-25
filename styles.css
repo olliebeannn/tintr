@@ -20,6 +20,11 @@ h2 {
   line-height: 1.25em;
 }
 
+p {
+  font-size: 0.666666667em;
+  margin-top: 0.75em;
+}
+
 .list-input-label {
   margin: 4em auto 0 auto;
   width: 80%;
@@ -27,7 +32,6 @@ h2 {
 
 .errorMessage {
   color: #FF798A;
-  font-size: 0.75em;
 }
 
 #title {
